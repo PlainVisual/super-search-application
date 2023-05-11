@@ -11,7 +11,7 @@ import { faEye } from '@fortawesome/free-solid-svg-icons';
 
 function LoginPage() {
 
-  const { logInFunction } = useContext(AuthContext);
+  const { updateDataFunction } = useContext(AuthContext);
   const [errorMsg, setErrorMsg] = useState("");  
 
   const { register, handleSubmit, formState: { errors }, reset} = useForm({
@@ -27,10 +27,12 @@ function LoginPage() {
         username: data.username,
         password: data.password,
       });
-      console.log(res.data);
+      console.log("result login", res.data);
+      console.log("result login", res.data.id);
 
-      const token = res.data.accessToken;
-      logInFunction(token);
+      const Accestoken = res.data.accessToken;
+          
+      updateDataFunction(Accestoken);
       
 
     }catch(e) {
@@ -39,7 +41,7 @@ function LoginPage() {
       if (!e?.response) {
         setErrorMsg("No server connection");
       } else if (e.response?.status === 401) {
-        setErrorMsg("Username or Password is incorrect.");
+        setErrorMsg("Username or Password not found. Signup for a new account to acces");
       } else {
         setErrorMsg("creating account failed please try again later");
       }
@@ -60,6 +62,7 @@ function LoginPage() {
           <InputField
             typeAttribute="text"
             nameAttribute="username"
+            autoCompleteAttr="username"
             placeHolder="Username"
             labelTextTop="Fill in your username"
             errors={ errors }
@@ -119,8 +122,6 @@ function LoginPage() {
             icon={faEye}
             
           />
-
-          
          
          <Button 
               btnType="submit"
@@ -132,7 +133,7 @@ function LoginPage() {
          
         </form>
 
-        <p>Don't have a account? <Link to="/signup">Register</Link> first to gain acces.</p>
+        <p>Don't have a account? <Link to="/signup">Signup</Link> first to gain acces.</p>
 
       </section>
 

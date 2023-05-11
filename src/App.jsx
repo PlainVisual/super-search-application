@@ -11,23 +11,27 @@ import ProfileUpdateHeroPicker from "./pages/Profile/ProfileUpdateHeroPicker"
 import ThankyouPage from "./pages/ThankYou/ThankyouPage";
 import NotFoundPage from "./pages/404/NotFoundPage";
 import PrivateRoute from './components/PrivateRoute';
+import { AuthContext } from "./Context/AuthContext";
+import { useContext } from 'react';
 import "./App.css";
 
 function App() {
+
+  const { isAuth } = useContext(AuthContext);
 
   return (
     
       <Routes>
         {/* Openbare pagina's */}
-        <Route path="/" element={ <Navigate to="welcome-to-SuperSearch" replace /> } />
-        <Route path="/Welcome-to-SuperSearch" element={ <SplashScreen /> } />
+        { !isAuth && <Route path="/" element={ <Navigate to="welcome-to-SuperSearch" replace /> } />}
+        { !isAuth && <Route path="/Welcome-to-SuperSearch" element={ <SplashScreen /> } /> }
         <Route path="/signup" element={ <SignUp /> } />
         <Route path="/signup-step-2" element={ <SignUpHeroPicker /> } />
         <Route path="/login" element={ <LoginPage /> } />
         <Route path="/thank-you" element={ <ThankyouPage /> } />
         {/* Beveiligde pagina's */}
         <Route element={<PrivateRoute />}>
-            <Route path="/home" element={ <Home /> } />
+            <Route path="/" element={ <Home /> } />
             <Route path="/favorites" element={ <FavoritesPage /> } />
             <Route path="/profile" element={ <ProfilePage /> } />
             <Route path="/update-profile-picture" element={ <ProfileUpdateHeroPicker /> } />

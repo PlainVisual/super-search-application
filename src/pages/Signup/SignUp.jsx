@@ -68,6 +68,7 @@ function SignUp() {
           <InputField
             typeAttribute="text"
             nameAttribute="username"
+            autoCompleteAttr="username"
             placeHolder="Username"
             labelTextTop="Fill in your username"
             errors={ errors }

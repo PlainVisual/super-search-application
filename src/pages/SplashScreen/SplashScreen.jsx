@@ -18,10 +18,26 @@ function  SplashScreen() {
 
     <Button 
       btnType="button"
-      goToPage="/home"
+      goToPage="/"
       isDisabled= { false }
     >   
       Home
+    </Button>
+
+    <Button 
+      btnType="button"
+      goToPage="/login"
+      isDisabled= { false }
+    >   
+      Login
+    </Button>
+
+    <Button 
+      btnType="button"
+      goToPage="/signup"
+      isDisabled= { false }
+    >   
+      SignUp
     </Button>
   
     </>
