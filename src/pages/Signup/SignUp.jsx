@@ -7,6 +7,7 @@ import InputField from '../../components/formfields/InputField';
 import Button from '../../components/buttons/button';
 import "../Signup/signup.css"
 import { faEye } from '@fortawesome/free-solid-svg-icons';
+import { checkServer } from '../../Helpers/checkServer';
 
 
 function SignUp() {
@@ -26,9 +27,18 @@ function SignUp() {
     mode: "onBlur",
   });
 
+  // Check if the server is running. see src/Helpers
+  checkServer();
+
   async function PostNewUser(data, e) {
 
     e.preventDefault();
+
+    const serverIsRunning = await checkServer();
+    if (!serverIsRunning) {
+      setErrorMsg('Server is not responding');
+      return;
+    }    
     
     try{
       const res = await axios.post('https://frontend-educational-backend.herokuapp.com/api/auth/signup', {

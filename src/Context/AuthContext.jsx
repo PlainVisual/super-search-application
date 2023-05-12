@@ -34,7 +34,7 @@ function AuthContextProvider({ children }) {
       // Use Promise.all to make both requests concurrently
       const [imageRes, userRes] = await Promise.all([
         imageSrc &&
-         axios.post(
+        axios.post(
             "https://frontend-educational-backend.herokuapp.com/api/user/image",
             imageData,
             {

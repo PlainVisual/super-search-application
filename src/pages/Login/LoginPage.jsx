@@ -7,6 +7,7 @@ import axios from 'axios';
 import { AuthContext } from "../../Context/AuthContext";
 import { useContext, useState } from "react";
 import { faEye } from '@fortawesome/free-solid-svg-icons';
+import { checkServer } from "../../Helpers/checkServer";
 
 
 function LoginPage() {
@@ -18,9 +19,18 @@ function LoginPage() {
     mode: "onBlur",
   });
 
+  // Check if the server is running. see src/Helpers
+  checkServer();
+
   async function LogInUser(data, e) {
 
     e.preventDefault();
+
+    const serverIsRunning = await checkServer();
+    if (!serverIsRunning) {
+      setErrorMsg('Server is not responding');
+      return;
+    }
 
     try{
       const res = await axios.post('https://frontend-educational-backend.herokuapp.com/api/auth/signin', {
