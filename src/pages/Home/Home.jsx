@@ -5,22 +5,21 @@ import { useContext, useEffect, useState } from 'react';
 
 function Home() {
 
-  const { logOutFunction, storedId, profilePicture, profilePic } = useContext(AuthContext);
-  const [profilePictureUrl, setProfilePictureUrl] = useState('');
+  const { storedId,
+          storedImg, 
+        } = useContext(AuthContext);
+
+  const [ charaterPicture, 
+          setCharacterPicture
+        ] = useState('');
   
   useEffect(() => {
-    setProfilePictureUrl(profilePicture);
-  }, [profilePicture]);
+    setCharacterPicture(storedImg);
+  }, [storedImg]);
 
   return (
     <>
-    <div>Home</div>
-    <p>SelectedId: { storedId }</p>
-    <p>Profilepicture: </p>
-    <img src={ profilePictureUrl } />
-    <img src={ profilePic } />
-
-    <Button 
+     <Button 
       btnType="button"
       goToPage="/"
       isDisabled= { false }
@@ -38,19 +37,18 @@ function Home() {
 
     <Button 
       btnType="button"
-      goToPage="/profile"
+      goToPage="/search"
       isDisabled= { false }
     >   
-      Profile
+      Search for Heroes
     </Button>
 
-    <button
-      type="button"
-      onClick={ logOutFunction }
-    >
-      Logout
-    </button>
-    </>
+    <div>Home</div>
+    <p>SelectedId: { storedId }</p>
+    <p>Profilepicture: </p>
+    <img src={ charaterPicture } />
+
+   </>
 
     
   );

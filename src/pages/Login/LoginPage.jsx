@@ -9,15 +9,19 @@ import { useContext, useState } from "react";
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 import { checkServer } from "../../Helpers/checkServer";
 
-
 function LoginPage() {
 
   const { updateDataFunction } = useContext(AuthContext);
-  const [errorMsg, setErrorMsg] = useState("");  
+  const [ errorMsg, 
+          setErrorMsg
+        ] = useState("");  
 
-  const { register, handleSubmit, formState: { errors }, reset} = useForm({
-    mode: "onBlur",
-  });
+  const { register, 
+          handleSubmit, 
+          formState: { errors }, 
+          reset } = useForm({
+                        mode: "onBlur",
+                      });
 
   // Check if the server is running. see src/Helpers
   checkServer();
@@ -37,8 +41,8 @@ function LoginPage() {
         username: data.username,
         password: data.password,
       });
-      console.log("result login", res.data);
-      console.log("result login", res.data.id);
+      // console.log("result login", res.data);
+      // console.log("result login", res.data.id);
 
       const Accestoken = res.data.accessToken;
           
@@ -51,7 +55,7 @@ function LoginPage() {
       if (!e?.response) {
         setErrorMsg("No server connection");
       } else if (e.response?.status === 401) {
-        setErrorMsg("Username or Password not found. Signup for a new account to acces");
+        setErrorMsg("Username or Password not found");
       } else {
         setErrorMsg("creating account failed please try again later");
       }
@@ -63,8 +67,7 @@ function LoginPage() {
 
   return (
 
-
-    <main>
+    <>
       <section className="left_column"></section>
       <section className="right_column">
         {errorMsg && <span className='error__msg'>{ errorMsg }</span>}
@@ -98,8 +101,6 @@ function LoginPage() {
             }}
             required
           />
-
-          
 
           <InputField
             typeAttribute="password"
@@ -147,7 +148,7 @@ function LoginPage() {
 
       </section>
 
-    </main> 
+    </> 
     
 
 

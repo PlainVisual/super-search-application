@@ -10,29 +10,71 @@ import { faEye } from '@fortawesome/free-solid-svg-icons';
 
 function ProfilePage() {
 
-  const { updateDataFunction } = useContext(AuthContext);
-  const [errorMsg, setErrorMsg] = useState("");  
+  const { profilePicture, 
+          username, 
+          authState, 
+          updateAuthState,
+          logOutFunction, 
+          token } = useContext(AuthContext);
 
-  const { register, handleSubmit, formState: { errors }, reset} = useForm({
-    mode: "onBlur",
-  });
+  const [ errorMsg, 
+          setErrorMsg
+        ] = useState("");  
 
-  async function LogInUser(data, e) {
+  const [ succesMsg, 
+          setSuccesMsg
+        ] = useState("");      
+
+  const { register, 
+          handleSubmit, 
+          formState: { errors }, 
+          watch, 
+          reset } = useForm({
+                      mode: "onBlur",
+                      });
+
+  async function updateUser(data, e) {
 
     e.preventDefault();
 
     try{
-      const res = await axios.post('https://frontend-educational-backend.herokuapp.com/api/auth/signin', {
-        username: data.username,
+      if(data.email) {
+      const res = await axios.put('https://frontend-educational-backend.herokuapp.com/api/user', {
+        email: data.email,
+      }, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      console.log("result login", res.data);   
+         
+      updateAuthState({
+        ...authState,
+        email: res.data.email,
+      }
+      );
+
+    } else if(data.password) {
+      const res = await axios.put('https://frontend-educational-backend.herokuapp.com/api/user', {
         password: data.password,
+        repeatedPassword: data.repeatedPassword,
+      }, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
       });
       console.log("result login", res.data);
-      console.log("result login", res.data.id);
 
-      const Accestoken = res.data.accessToken;
-          
-      updateDataFunction(Accestoken);
-      
+      setSuccesMsg("Succes! You will be redirected to the login page after 15s or do it yourself");
+
+      setTimeout(() => {
+        logOutFunction();
+      }, 15000)
+
+    }
 
     }catch(e) {
       console.log(e.response.data.message);
@@ -47,59 +89,60 @@ function ProfilePage() {
     }
 
     reset();
+    
       
-  };
+  };  
 
   return (
 
-    <main>
+    <>
     <section className="left_column"></section>
     <section className="right_column">
+      <div className="user_profilePic"><img src={ profilePicture } alt="" /></div>
+      <Link to="/update-profile-picture">Change profile picture</Link>
+      <p className="user_name">{ username }</p>
+      <p className="user_email">{ authState.email }</p>
       {errorMsg && <span className='error__msg'>{ errorMsg }</span>}
-      <form onSubmit={handleSubmit(LogInUser)}>
-        <InputField
-          typeAttribute="text"
-          nameAttribute="username"
-          autoCompleteAttr="username"
-          placeHolder="Username"
-          labelTextTop="Fill in your username"
-          errors={ errors }
-          register={ register }
-          validationSchema={{
-            required: {
-              value: true,
-              message: "Username should be 3-16 characters and shouldn't include any special character!",
-            },
-            minLength: {
-              value: 3,
-              message: "Username must be at least 3 characters",
-            },
-            maxLength: {
-              value: 16,
-              message: "Username not longer then 16 characters",
-            },
-            pattern: {
-              value: /^[A-Za-z0-9]{3,16}$/,
-              message: "Don't use a special character",
-            },
-                          
-          }}
-          required
-        />
-
-        
+      <form onSubmit={handleSubmit(updateUser)}>
+         
+         <InputField
+            typeAttribute="text"
+            nameAttribute="email"
+            autoCompleteAttr="email"
+            placeHolder="Email"
+            labelTextTop="Change Email"
+            errors={ errors }
+            register={ register }
+            validationSchema={{
+              required: {
+                value: false,
+                message: "This should be a valid emailadress",
+              },
+              pattern: {
+                value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
+                message: "This should be a valid email address",
+              },              
+              validate: (value) => {
+                if (value > 0) {
+                return value.includes('@') || "Emailadress should include a @"
+                }
+              }
+              
+            }}
+            // required
+          />
 
         <InputField
           typeAttribute="password"
           nameAttribute="password"
           autoCompleteAttr="new-password"
           placeHolder="Password"
-          labelTextTop="Fill in your Password"
+          labelTextTop="Change Password"
           errors={ errors }
           register={ register }
           validationSchema={{
             required: {
-              value: true,
+              value: false,
               message: "Password should be 8-20 characters and include at least 1 letter, 1 number and 1 special character!",
             },
             minLength: {
@@ -116,31 +159,82 @@ function ProfilePage() {
             },
                           
           }}
-          required
+          // required
           icon={faEye}
           
         />
-       
-       <Button 
+
+        <InputField
+          typeAttribute="password"
+          nameAttribute="repeatedPassword"
+          autoCompleteAttr="new-password"
+          placeHolder="Confirm Password"
+          labelTextTop="Confirm Password"
+          errors={ errors }
+          register={ register }
+          validationSchema={{
+            required: {
+              value: false,
+              message: "Password should be 8-20 characters and include at least 1 letter, 1 number and 1 special character!",
+            },
+            minLength: {
+              value: 8,
+              message: "Password must be at least 8 characters",
+            },
+            maxLength: {
+              value: 20,
+              message: "Password not longer then 20 characters",
+            },
+            pattern: {
+              value: /^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$/, 
+              message: "Use at least 1 letter, 1 number or a special character",
+            },
+            validate: (val) => {
+              if (watch("password") != val) {
+                return "Your password do not match";
+              }
+            },
+                          
+          }}
+          // required
+          icon={faEye}
+        />
+       {succesMsg ? (
+            <div className="succes">
+            <span className='succes__msg'>{ succesMsg }</span>
+            <button 
+            type="button"
+            onClick={ logOutFunction }
+            
+       >   
+            Logout
+           
+            </button>
+            </div>
+        ) : (
+        <Button 
             btnType="submit"
             isDisabled= { false }
        >   
-            LogIn
+            Update
            
        </Button>
+       )}
+       
        
       </form>
-
-      <p>Don't have a account? <Link to="/signup">Signup</Link> first to gain acces.</p>
+      
+      <Button 
+      btnType="button"
+      goToPage="/"
+      isDisabled= { false }
+    >   
+      Home
+    </Button>
 
     </section>
 
-  </main>
-
-
-
-
-
+  </> 
   )
 }
 

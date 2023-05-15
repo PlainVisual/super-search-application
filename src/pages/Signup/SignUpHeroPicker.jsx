@@ -2,39 +2,42 @@ import React from 'react'
 import { useContext } from 'react';
 import { AuthContext } from '../../Context/AuthContext';
 import { HeroContentPicker } from '../../Helpers/images';
+import Heropicker from '../../components/heropicker/Heropicker';
 
 function SignUpHeroPicker() {
 
-  const { token, updateDataFunction, setStoredId } = useContext(AuthContext);  
+  const { token, 
+          updateDataFunction,
+          setStoredId,
+          setStoredImg 
+        } = useContext(AuthContext);
   
   const handleImageClick = (e) => {
     e.preventDefault();
+    
     const imageSrc = e.target.getAttribute("data-src")
     const characterID = e.target.getAttribute("data-id")
+    const charaterImg = e.target.getAttribute("src")
+    
     setStoredId(characterID);
-    updateDataFunction(token, imageSrc);
+    setStoredImg(charaterImg);
+    updateDataFunction(token, `${imageSrc}?${Date.now()}`);
   }
 
   return (
     <div className="image-container">
     { HeroContentPicker.length === 0 ? (
       <div className="msgError">
-        <p>Loading...</p>
+        <p>... is Loading</p>
       </div>
     ) : (
-      
-        HeroContentPicker.map((heroes) => (
-         
-            <div key={ heroes.id } className={`image-button ${ heroes.name.replaceAll(' ', '-').toLowerCase() }`} onClick={handleImageClick}>
-                <img
-                  src={ heroes.placeholder } 
-                  data-id={ heroes.id } 
-                  data-src={ heroes.profile } 
-                  alt={ heroes.name.replaceAll(' ', '-').toLowerCase() } />
-            </div>
-                
-        ))
-      
+
+
+      <Heropicker 
+      heroes={ HeroContentPicker }
+      imageClick={ handleImageClick }
+      />
+             
     )}
     </div>  
   )
