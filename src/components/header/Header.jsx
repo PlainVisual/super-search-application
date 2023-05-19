@@ -2,6 +2,7 @@ import React from "react";
 import { AuthContext } from '../../Context/AuthContext';
 import { useContext, useEffect, useState } from 'react';
 import Button from "../buttons/button";
+import '../../components/header/header.css'
 
 
 function Header() {
@@ -27,10 +28,14 @@ function Header() {
             <li></li>
           </ul>
           <div className="header__account">
-            <p>User: { authState.username }</p>
-            <p>emailadres: { authState.email }</p>
-            <p>Profilepicture: </p>
-            <img src={ profilePictureUrl } />
+            <div className="profile__container">
+              <img className="hero__profile" src={ profilePictureUrl } />
+            </div>
+            <div className="user_profile">
+            <p>{ authState.username }</p>
+            <p>{ authState.email }</p>
+            </div>
+            
             <button
       type="button"
       onClick={ logOutFunction }

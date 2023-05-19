@@ -1,0 +1,24 @@
+nav {
+  display: flex;
+}
+
+.header__account {
+  display: flex;
+
+}
+
+.profile__container {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  overflow: hidden;
+  background-color: red;
+  border-radius: 50%;
+}
+
+.hero__profile {
+  scale: 1.5;
+  top:30px;
+  position: absolute;  
+}
+

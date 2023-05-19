@@ -1,0 +1,12 @@
+.main-search {
+  display: unset;
+}
+
+
+.search_content {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(250px, 200px));
+ grid-column-gap: 1rem;
+ grid-row-gap: 2rem;
+}
+

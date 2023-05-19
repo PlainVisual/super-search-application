@@ -15,6 +15,7 @@ function AuthContextProvider({ children }) {
                                           profilePicture: null,
                                           status: "pending",
                                         })
+
   const [token, setToken] = useState(localStorage.getItem("token")); 
   const [storedId, setStoredId] = useState(localStorage.getItem("USER_SELECT_ID") || "");
   const [storedImg, setStoredImg] = useState(localStorage.getItem("USER_SELECT_IMG") || "");
@@ -22,7 +23,7 @@ function AuthContextProvider({ children }) {
   const navigate = useNavigate();
   const location = useLocation(); 
   
-  // We upload the profile picture to the backend server en get the userdata back.  
+   // We upload the profile picture to the backend server en get the userdata back.  
   
   async function getData(token, imageSrc) {
     setToken(token);
@@ -55,8 +56,6 @@ function AuthContextProvider({ children }) {
         }
       );
 
-      // console.log(imageRes);
-      
       // Destructure the user data
       const { email, id, username, profilePicture } = userRes.data;
       // setProfilePic(profilePicture);
@@ -102,6 +101,8 @@ function AuthContextProvider({ children }) {
           localStorage.removeItem("dateEnt");
           localStorage.removeItem("USER_SELECT_ID");
           localStorage.removeItem("USER_SELECT_IMG");
+          localStorage.removeItem('SS_FAVOURITES');
+          localStorage.removeItem('favouriteDisabled');
           setStoredDate("");
           logOut();
           
@@ -171,7 +172,6 @@ function AuthContextProvider({ children }) {
     navigate("/thank-you", { replace: true });
   }
 
-
   const authentication = {
     isAuth: authState.isAuth,
     email: authState.email,
@@ -185,8 +185,7 @@ function AuthContextProvider({ children }) {
     storedId: storedId,
     setStoredId: setStoredId,
     storedImg: storedImg,
-    setStoredImg: setStoredImg,
-    
+    setStoredImg: setStoredImg,        
    }
 
   return (
