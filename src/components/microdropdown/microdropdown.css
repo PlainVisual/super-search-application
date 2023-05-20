@@ -1,0 +1,29 @@
+.micro-drop-down {
+  position: absolute;
+  z-index: 3;
+  width: 250px;
+  top: 75px;
+  background-color: aliceblue;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  /* opacity: 0; */
+}
+
+.micro-drop-down.active {
+  opacity: 1;
+  transform: translateY(20px);
+  transition: all 0.5s ease;
+}
+
+.micro-drop-down.inactive {
+  opacity: 0;
+  transform: translateY(0px);
+  transition: all 0.5s ease;
+}
+
+.micro-items {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+}

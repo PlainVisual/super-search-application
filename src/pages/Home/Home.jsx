@@ -59,33 +59,9 @@ function Home() {
   return (
     <>
     {loading && <span className='loadingMsg'>Hang on we are loading the data</span>}
-     <Button 
-      btnType="button"
-      goToPage="/"
-      isDisabled= { false }
-    >   
-      Home
-    </Button>
-
-    <Button 
-      btnType="button"
-      goToPage="/favorites"
-      isDisabled= { false }
-    >   
-      Favorites
-    </Button>
-
-    <Button 
-      btnType="button"
-      goToPage="/search"
-      isDisabled= { false }
-    >   
-      Search for Heroes
-    </Button>
-
     <section className="left_column">
     <h1>{ heroName }</h1>
-    <div className="powerstats">
+    <article className="powerstats">
     {error && <span>Something went wrong when fetching the data. Please try again later!</span>}
                  { powerSubStat.length === 0 ? (
                     <div className="msgError">
@@ -102,8 +78,8 @@ function Home() {
                       ))
                     
                   )}
-      </div>  
-      <div className="hero_bio">
+      </article>  
+      <article className="hero_bio">
       <p>{ heroBio['full-name'] }</p>
     <p>{ heroFysic?.race }</p>
     <p>{ heroFysic?.gender }</p>
@@ -111,11 +87,11 @@ function Home() {
     <p>{ heroFysic?.height?.[1] }</p>
     <p>{ heroFysic?.weight?.[1] }</p>                 
 
-      </div>
+      </article>
 
     </section>
     <section className="right_column">
-      <img src={ charaterPicture } />
+      <figure><img src={ charaterPicture } /></figure>
     </section>
   
    </>

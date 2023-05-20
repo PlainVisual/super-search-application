@@ -25,7 +25,7 @@ function SignUpHeroPicker() {
   }
 
   return (
-    <div className="image-container">
+    <div className="hero-image-container">
     { HeroContentPicker.length === 0 ? (
       <div className="msgError">
         <p>... is Loading</p>

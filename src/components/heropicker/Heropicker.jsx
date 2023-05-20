@@ -8,15 +8,18 @@ function HeropickerContent({ heroes, imageClick }) {
     <>
     { heroes.map((hero) => (
          
-         <div key={ hero.id } className={`image-button ${ hero.name.replaceAll(' ', '-').toLowerCase() }`} onClick={imageClick}>
-             <img
-               src={ hero.placeholder } 
-               data-id={ hero.id } 
-               data-src={ hero.profile } 
-               alt={ hero.name.replaceAll(' ', '-').toLowerCase() } />
-         </div>
-             
-     )) };    
+          <article key={ hero.id } className={`hero-image-button ${ hero.name.replaceAll(' ', '-').toLowerCase() }`} onClick={imageClick}>
+              <div className="hero__img">
+                 <img
+                  src={ hero.placeholder } 
+                  data-id={ hero.id } 
+                  data-src={ hero.profile } 
+                  alt={ hero.name.replaceAll(' ', '-').toLowerCase() } 
+                />                
+             </div>  
+         </article>
+            
+     ))}    
     </>
 
   )

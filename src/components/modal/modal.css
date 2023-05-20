@@ -1,0 +1,100 @@
+html:has(dialog[open][modal-mode="popup"]) {
+  overflow: hidden;
+}
+
+dialog {
+  margin:auto;
+  padding: 0;
+  inset: 0;
+  width: 70vw;
+  border-radius: 8px;
+  border: 1px solid #888;
+  opacity: 1;
+  
+  max-inline-size: min(90vw, var(--size-content-3));
+  max-block-size: min(80vh, 100%);
+  max-block-size: min(80dvb, 100%);
+  overflow: hidden;
+  transition: all .75s ease;
+}
+
+
+dialog::backdrop {
+  opacity: 0;
+  background: rgba(0, 0, 0, 0) !important;
+}
+
+dialog[modal-mode="popup"][open]::backdrop {
+  animation: show-backdrop 0.75s ease 0.2s normal forwards;
+}
+
+@keyframes show-backdrop {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+
+dialog[open] {
+  /* transform-origin: center; */
+  animation: show 0.75s ease normal;
+}
+
+@keyframes show{
+  from {
+      transform: translateY(-110%);
+      scale: 0;
+      width: 5vw;
+  }
+  to {
+      transform: translateY(0%);
+      scale: 1;
+      width: 70vw;
+  }
+}
+
+dialog:not([open]) {
+  pointer-events: none;
+  opacity: 0;
+}
+
+dialog[modal-mode="popup"]::backdrop {
+  opacity: 0;
+  backdrop-filter: blur(6px) hue-rotate(80deg) contrast(180%);
+}
+
+.popup_container {
+  position: relative;
+  display: flex;
+  
+  }
+
+.hero__content {
+  flex: 1;
+  flex-basis: 80%;
+  height: 80vh;
+  padding: 3rem 3rem;
+}
+
+.hero-biography {
+  height: 60vh;
+  padding-bottom: 1rem;
+  overflow-y: scroll;
+}
+
+.hero__btn {
+  position: absolute;
+  top: 20px;
+  right:20px;
+}
+
+.hero__img {
+  background-image: var(--backgroundImg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+

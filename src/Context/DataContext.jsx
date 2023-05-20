@@ -57,6 +57,20 @@ function DataContextProvider({ children }) {
     localStorage.setItem("SS_FAVOURITES", JSON.stringify(favoriteContext));
   }
 
+  const removeFavouriteHero = (heroToRemove) => {
+    const newFavoriteList = favoriteContext.filter((favorite) => {
+      return favorite.id !== heroToRemove.id;
+    });  
+    setFavoriteContext(newFavoriteList);
+    storedLocalStorage(newFavoriteList);
+
+    const updatedFavouriteDisabled = { ...favouriteDisabeld };
+    delete updatedFavouriteDisabled[heroToRemove.id];
+    setFavouriteDisabled(updatedFavouriteDisabled);
+    localStorage.setItem('favouriteDisabled', JSON.stringify(updatedFavouriteDisabled));
+
+  };
+
   const data = {
     favoriteContext: favoriteContext,
     setFavoriteContext: setFavoriteContext,
@@ -69,6 +83,7 @@ function DataContextProvider({ children }) {
     storedLocalStorage: storedLocalStorage,
     favouriteDisabeld: favouriteDisabeld,
     setFavouriteDisabled: setFavouriteDisabled,
+    removeFavouriteHero: removeFavouriteHero,
     }
 
   return (

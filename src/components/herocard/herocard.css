@@ -1,11 +1,17 @@
 .hero_card {
   position: relative;
+  cursor: pointer;
   height:40vh;
+  overflow: hidden;
+  border-radius: 1rem;  
+}
+
+.hero__card-container {
+  height: 100%;
   background-image: var(--backgroundImg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  border-radius: 1rem;  
 }
 
 .hero_card:hover .card__overlay {
@@ -13,16 +19,18 @@
 }
 
 .card__overlay {
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
 
   position: absolute;
   background: rgba(0, 0, 0, 0.8);
-  width: 100%;
+  width: 25%;
   transition: 0.5s ease;
-  opacity: 0;
-  bottom: 0px;
+  opacity: 1;
+  right: 0;
+  top: 0;
   font-size: 2.5rem;
   padding: 1.25rem;
   text-align: center;

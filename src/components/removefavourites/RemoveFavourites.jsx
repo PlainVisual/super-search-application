@@ -9,7 +9,7 @@ function RemoveFavourites() {
   return(
 
     <>
-      <span className="cardfavourites">Remove from Favourites <i>{favRemove}</i></span>
+      <span className="cardfavourites"><i>{favRemove}</i></span>
     </>
 
 

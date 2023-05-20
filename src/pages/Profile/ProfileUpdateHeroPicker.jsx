@@ -1,10 +1,11 @@
-import React from 'react'
+import React from 'react';
 import axios from 'axios';
 import { useContext } from 'react';
 import { AuthContext } from '../../Context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { HeroContentPicker } from '../../Helpers/images';
 import Heropicker from '../../components/heropicker/Heropicker';
+import '../Profile/profile.css';
 
 function ProfileUpdateHeroPicker() {
 
@@ -58,7 +59,8 @@ function ProfileUpdateHeroPicker() {
   }
 
   return (
-    <div className="image-container">
+    
+    <div className="hero-image-container">
     { HeroContentPicker.length === 0 ? (
       <div className="msgError">
         <p>... is Loading</p>
@@ -71,7 +73,8 @@ function ProfileUpdateHeroPicker() {
         />
       
     )}
-    </div>  
+    </div> 
+     
   )
 }
 

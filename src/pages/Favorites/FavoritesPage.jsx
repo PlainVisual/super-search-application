@@ -9,12 +9,9 @@ import "../../pages/Favorites/favoritespage.css"
 function FavoritesPage() {
   
   const { favoriteContext,
-          setFavoriteContext,
           loading, 
           error,
-          storedLocalStorage,
-          favouriteDisabeld,
-          setFavouriteDisabled, 
+          removeFavouriteHero, 
         } = useContext(DataContext);
   const [page, setPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
@@ -39,21 +36,6 @@ function FavoritesPage() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-
-
-  const removeFavouriteHero = (heroToRemove) => {
-    const newFavoriteList = favoriteContext.filter((favorite) => {
-      return favorite.id !== heroToRemove.id;
-    });  
-    setFavoriteContext(newFavoriteList);
-    storedLocalStorage(newFavoriteList);
-
-    const updatedFavouriteDisabled = { ...favouriteDisabeld };
-    delete updatedFavouriteDisabled[heroToRemove.id];
-    setFavouriteDisabled(updatedFavouriteDisabled);
-    localStorage.setItem('favouriteDisabled', JSON.stringify(updatedFavouriteDisabled));
-
-  };
 
   return (
     <>
