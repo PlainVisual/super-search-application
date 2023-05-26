@@ -3,19 +3,24 @@ html:has(dialog[open][modal-mode="popup"]) {
 }
 
 dialog {
+  --notchSize-left-MOD: 3rem;
+  --notchSize-right-MOD: 3rem;
   margin:auto;
   padding: 0;
   inset: 0;
   width: 70vw;
-  border-radius: 8px;
-  border: 1px solid #888;
+  border: unset;
   opacity: 1;
+  background-color: var(--primary-clr);
   
   max-inline-size: min(90vw, var(--size-content-3));
   max-block-size: min(80vh, 100%);
   max-block-size: min(80dvb, 100%);
   overflow: hidden;
   transition: all .75s ease;
+  clip-path: polygon(var(--notchSize-left-MOD) 0, 0 var(--notchSize-left-MOD), 0 100%, calc(100% - var(--notchSize-right-MOD)) 100%, 100% calc(100% - var(--notchSize-right-MOD)), 100% 0);
+
+ -webkit-clip-path: polygon(var(--notchSize-left-MOD) 0, 0 var(--notchSize-left-MOD), 0 100%, calc(100% - var(--notchSize-right-MOD)) 100%, 100% calc(100% - var(--notchSize-right-MOD)), 100% 0);
 }
 
 
@@ -62,7 +67,11 @@ dialog:not([open]) {
 
 dialog[modal-mode="popup"]::backdrop {
   opacity: 0;
-  backdrop-filter: blur(6px) hue-rotate(80deg) contrast(180%);
+  backdrop-filter: blur(6px) hue-rotate(80deg) contrast(0%);
+}
+
+.model-form {
+  width: 100% !important;
 }
 
 .popup_container {
@@ -75,26 +84,134 @@ dialog[modal-mode="popup"]::backdrop {
   flex: 1;
   flex-basis: 80%;
   height: 80vh;
-  padding: 3rem 3rem;
+  padding: 3rem 3rem 0rem 6rem;
 }
 
 .hero-biography {
   height: 60vh;
+  color: #FFF;
+  padding-right: 2rem;
   padding-bottom: 1rem;
+  margin-bottom: 2rem;
   overflow-y: scroll;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.hero-biography::-webkit-scrollbar {
+  width: 8px;
+ }
+
+ .hero-biography::-webkit-scrollbar-track {
+  width: 10px;
+  background : #555999;
+  border-radius: 10px;
+ }
+
+ .hero-biography::-webkit-scrollbar-thumb {
+   background: var(--searchicon-gradient);
+   border-radius: 10px;
+   box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+ }
+
+.hero-biography h1 {
+  font-size: 2.5rem;
+} 
+
+.hero-biography h4 {
+  color: var(--secondary-clr);
+}
+
+.bio-info span {
+  font-weight: var( --ff-fontweight-bold);
+}
+
+.popup-add-favourite, .popup-remove-favourite {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  color: #FFF;
+  background: var(--fav-gradient);
+  border: unset;
+  padding:0.5rem 2rem 0.5rem 2rem;
+  border-radius: 5px;
+  transform: translateY(0px);
+  transition: var(--animation-transition);
+}
+
+.popup-add-favourite:disabled {
+  opacity: 0.6;
+  cursor:not-allowed;
+}
+
+.popup-add-favourite img {
+  scale: 0.8;
+}
+
+.popup-add-favourite:is(:hover, :focus, :active, :focus, :target) {
+  transform: translateY(2px);
+  background: transparent linear-gradient(180deg, var(--tint-1-clr) 0%, var(--tint-2-clr) 54%, var(--tertiary-clr) 100%, var(--accent-clr) 100%) 0% 0% no-repeat padding-box;
+
 }
 
 .hero__btn {
   position: absolute;
-  top: 20px;
-  right:20px;
+  color: #FFF;
+  background: var(--fav-gradient);
+  border: unset;
+  top: 0px;
+  right:0px;
+  width:115px;
+  height: 180px;  
+
+  clip-path: polygon(0% 0%, 0 50%, 100% 100%, 100% 100%, 100% 0, 0% 0);
+  -Webkit-clip-path: polygon(0% 0%, 0 50%, 100% 100%, 100% 100%, 100% 0, 0% 0);
 }
 
-.hero__img {
+.hero__btn:is(:hover, :focus, :active, :focus, :target) .fa-xmark {
+  transform: translateY(1px);
+  scale: 2.6;
+} 
+
+.hero__btn .fa-xmark {
+  position: absolute;
+  top:50px;
+  scale: 3;
+  transform: translateY(0px);
+  transition: var(--animation-transition);
+}
+
+.hero__img-modal {
   background-image: var(--backgroundImg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+
+  clip-path: polygon(0% 0%, 0 50%, 100% 100%, 100% 100%, 100% 0, 0% 0);
+  -Webkit-clip-path: polygon(0% 0%, 0 70%, 50% 100%, 100% 100%, 100% 0, 0% 0);
 }
 
 
+@media only screen and (max-width: 1024px)  {
+
+  
+dialog {
+  width: 90vw;
+}
+
+  @keyframes show{
+    from {
+        transform: translateY(-110%);
+        scale: 0;
+        width: 5vw;
+    }
+    to {
+        transform: translateY(0%);
+        scale: 1;
+        width: 90vw;
+    }
+  }
+
+}

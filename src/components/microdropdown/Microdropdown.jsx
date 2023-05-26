@@ -14,8 +14,9 @@ function MicroDropdown({ isOpen }) {
     <nav className={`micro-drop-down ${isOpen ? 'active' : 'inactive'}`}>
       <div className="micro-items">
         <h4>Edit your account</h4>
+        <hr />
         <NavLink to="/profile">My profile</NavLink>
-        <button type="button" onClick={logOutFunction}> Log out</button>
+        <button className="logout-btn" type="button" onClick={logOutFunction}> Log out</button>
       </div>
     </nav>
     

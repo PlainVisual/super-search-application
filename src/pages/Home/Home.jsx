@@ -19,6 +19,10 @@ function Home() {
 
   const powerSubStat = Object.entries(powerStat).filter(([statKey]) => { return [ 'strength', 'speed', 'power', 'durability' ].includes(statKey) })
 
+  useEffect(() => {
+    document.title = "You have arrived in the Multiverse"
+  }, []);
+
 
   useEffect(() => {
     setCharacterPicture(storedImg);
@@ -44,12 +48,12 @@ function Home() {
 
       setTimeout(() => {
         toggleLoading(false);
-        }, 200);
+        }, 500);
     
-      console.log(stats);
+      // console.log(stats);
 
     } catch(e) {
-      console.error(e);
+      // console.error(e);
       toggleError(true);
       toggleLoading(false);
     }
@@ -58,45 +62,56 @@ function Home() {
 
   return (
     <>
-    {loading && <span className='loadingMsg'>Hang on we are loading the data</span>}
-    <section className="left_column">
-    <h1>{ heroName }</h1>
-    <article className="powerstats">
-    {error && <span>Something went wrong when fetching the data. Please try again later!</span>}
-                 { powerSubStat.length === 0 ? (
-                    <div className="msgError">
-                      <p>Loading...</p>
-                    </div>
-                  ) : (                                        
-                      powerSubStat.map(([ statKey, statValue ]) => (
-                        <RangeSlider 
-                            key={ statKey } 
-                            statName={ statKey }
-                            statSetter={ statValue }
-                        /> 
-                              
-                      ))
-                    
-                  )}
-      </article>  
-      <article className="hero_bio">
-      <p>{ heroBio['full-name'] }</p>
-    <p>{ heroFysic?.race }</p>
-    <p>{ heroFysic?.gender }</p>
-    <p>{ heroFysic?.['eye-color'] }</p>
-    <p>{ heroFysic?.height?.[1] }</p>
-    <p>{ heroFysic?.weight?.[1] }</p>                 
-
-      </article>
-
-    </section>
-    <section className="right_column">
-      <figure><img src={ charaterPicture } /></figure>
-    </section>
-  
-   </>
-
-    
+      <section className="home-content">
+       
+        <div className="left_column home-left">
+          <div className="home-bio">
+            <h1>{heroName}</h1>
+            <div className="home-stats">
+              <article className="powerstats">
+               <h4>Powerstats</h4>
+                {error && (
+                  <span>
+                    Something went wrong when fetching the data. Please try
+                    again later!
+                  </span>
+                )}
+                {powerSubStat.length === 0 ? (
+                  <div className="msgError">
+                    <p>Loading the stats hang on!...</p>
+                  </div>
+                ) : (
+                  powerSubStat.map(([statKey, statValue]) => (
+                    <RangeSlider
+                      key={statKey}
+                      statName={statKey}
+                      statSetter={statValue}
+                    />
+                  ))
+                )}
+              </article>
+              <article className="hero_bio">
+              <h4>Bio</h4>
+                <p><span>name:</span> {heroBio["full-name"]}</p>
+                <p><span>race:</span> {heroFysic?.race}</p>
+                <p><span>gender:</span> {heroFysic?.gender}</p>
+                <p><span>eye color:</span> {heroFysic?.["eye-color"]}</p>
+                <p><span>height:</span> {heroFysic?.height?.[1]}</p>
+                <p><span>weight:</span> {heroFysic?.weight?.[1]}</p>
+              </article>
+            </div>
+            <Button classAtrribute="primary-btn" btnType="button" goToPage="/search" isDisabled={false}>
+              find more heroes
+            </Button>
+          </div>
+         </div>
+        <div className="right_column home-right">
+          <figure>
+            <img src={charaterPicture} />
+          </figure>
+        </div>
+      </section>
+    </>
   );
 }
 

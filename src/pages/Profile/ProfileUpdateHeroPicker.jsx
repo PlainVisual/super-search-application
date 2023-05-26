@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { AuthContext } from '../../Context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { HeroContentPicker } from '../../Helpers/images';
@@ -16,14 +16,18 @@ function ProfileUpdateHeroPicker() {
           updateAuthState 
         } = useContext(AuthContext);
 
+        useEffect(() => {
+          document.title = "Update your profile picture"
+        }, []);      
+
   const navigate = useNavigate();
   
   async function handleImageClick(e) {
     e.preventDefault();
     
-    const imageSrc = e.target.getAttribute("data-src");
-    const characterID = e.target.getAttribute("data-id");
-    const characterIMG = e.target.getAttribute("src");
+    const imageSrc = e.currentTarget.querySelector('img').getAttribute('data-src');
+    const characterID = e.currentTarget.querySelector('img').getAttribute('data-id');
+    const characterIMG = e.currentTarget.querySelector('img').getAttribute('src');
     setStoredId(characterID);
     setStoredImg(characterIMG);
 
@@ -61,6 +65,15 @@ function ProfileUpdateHeroPicker() {
   return (
     
     <div className="hero-image-container">
+      <div className="hero-picker-content">
+        <div className="picker-cta-text">
+            <h1>Change your profile picture</h1>
+        </div>
+        <div className="picker-slide">
+          
+        </div>
+        
+      </div>
     { HeroContentPicker.length === 0 ? (
       <div className="msgError">
         <p>... is Loading</p>

@@ -1,15 +1,16 @@
 import React from "react";
 import "../favouritesslidein/favouritesslidein.css"
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { DataContext } from "../../Context/DataContext";
-import { AuthContext } from "../../Context/AuthContext";
 import { useContext, useState, useEffect } from "react";
+import Button from "../buttons/button";
 import Herocardsm from "../herocardsmall/Herocardsm";
 import RemoveFavourites from "../../components/removefavourites/RemoveFavourites"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faClose } from '@fortawesome/free-solid-svg-icons'
 
 function FavouritesSlideIn({ favIsOpen, setFavIsOpen }) {
 
-  const { logOutFunction } = useContext(AuthContext);
   const { favoriteContext,
     loading, 
     error,
@@ -42,11 +43,14 @@ function FavouritesSlideIn({ favIsOpen, setFavIsOpen }) {
   return (
 
     <nav className={`macro-slidein-fav ${favIsOpen ? 'active' : 'inactive'}`}>
-      {favoriteContext.length === 0 && <span className="favorite_nocontent">No Favourites are added. Search for some heroes and ad them to your favorites</span>}
+      <button className="fav-btn-close" onClick={ () => setFavIsOpen(!favIsOpen) }><FontAwesomeIcon icon={faClose} /></button>
+      <h1>Favorites</h1>
+     
       {error && <span>Something went wrong when fetching the data. Please try again later!</span>}
       <div className="slide-container">
+        
           <div className="favo-items">
-          <button onClick={ () => setFavIsOpen(!favIsOpen) }>close</button>
+          {favoriteContext.length === 0 && <span className="favorite_nocontent">No Favourites are added. <Link to="/search">Search for more heroes</Link> and ad them to your favorites</span>}
           {favoriteContext.slice(0, page * itemsPerPage).map((favourites) => (
 
               <Herocardsm 

@@ -3,6 +3,11 @@ import "../../components/modal/modal.css";
 import RangeSlider from "../rangeslider/RangeSlider";
 import { useMatch } from "react-router-dom";
 import { isClickInsideRectangle } from "../../Helpers/boundingClientRect";
+import bookmarkDone from "../../assets/bookmark-done.svg";
+import bookmarkUndone from "../../assets/bookmark-undone.svg";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faClose } from '@fortawesome/free-solid-svg-icons'
+
 
 function Modal({
   heroData,
@@ -67,11 +72,12 @@ function Modal({
       modal-mode="popup"
       modal-close="close"
     >
-      <form method="dialog">
+      <form className="model-form" method="dialog">
         <div className="popup_container">
           <div className="hero__content">
             <div className="hero-biography">
-              <h3>{heroData.name}</h3>
+              <h1>{heroData.name}</h1>
+              <h4>Powerstats</h4>
               <div className="powerstats hero_stats">
                 {powerSubStat.length === 0 ? (
                   <div className="msgError">
@@ -87,15 +93,17 @@ function Modal({
                   ))
                 )}
               </div>
-
-              <p>{heroFysic?.race}</p>
-              <p>{heroFysic?.gender}</p>
-              <p>{heroFysic?.eyeColor}</p>
-              <p>{heroFysic?.height?.[1]}</p>
-              <p>{heroFysic?.weight?.[1]}</p>
-              <p>{heroBio?.fullName}</p>
-              <p>{heroBio?.["aliases"]}</p>
-              <p>{heroBio?.placeOfBirth}</p>
+              <h4>Personal information</h4> 
+              <div className="bio-info">    
+              <p><span>Race:</span> {heroFysic?.race}</p>
+              <p><span>Gender:</span> {heroFysic?.gender}</p>
+              <p><span>Eyecolor:</span> {heroFysic?.eyeColor}</p>
+              <p><span>Height:</span> {heroFysic?.height?.[1]}</p>
+              <p><span>Weight:</span> {heroFysic?.weight?.[1]}</p>
+              <p><span>Fullname:</span> {heroBio?.fullName}</p>
+              <p><span>Aliases:</span> {heroBio?.["aliases"]}</p>
+              <p><span>Place of birth:</span> {heroBio?.placeOfBirth}</p>
+              </div> 
               <h4>Base of operations</h4>
               <p>{heroWork?.base}</p>
               <h4>Part of</h4>
@@ -108,6 +116,7 @@ function Modal({
                 onClick={handleFavoriteClick}
                 disabled={FavoriteDisabeld}
               >
+                <img src={bookmarkUndone} alt="" />
                 remove from favorite
               </button>
             )}
@@ -117,18 +126,19 @@ function Modal({
                 className="popup-add-favourite"
                 onClick={handleFavoriteClick}
                 disabled={FavoriteDisabeld}
-              >
+              > 
+                <img src={bookmarkDone} alt="" />
                 Add to favorite
               </button>
             )}
           </div>
 
           <div
-            className="hero__img"
+            className="hero__img hero__img-modal"
             style={{ "--backgroundImg": `url(${heroData.images.lg})` }}
           >
             <button className="hero__btn" onClick={onClose}>
-              Close
+            <FontAwesomeIcon icon={faClose} />
             </button>
           </div>
         </div>

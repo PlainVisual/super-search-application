@@ -1,6 +1,7 @@
 import React from 'react'
 import Button from '../../components/buttons/button'
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState, useContext, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { DataContext } from "../../Context/DataContext";
 import Herocard from '../../components/herocard/Herocard';
 import RemoveFavourites from "../../components/removefavourites/RemoveFavourites"
@@ -15,7 +16,11 @@ function FavoritesPage() {
         } = useContext(DataContext);
   const [page, setPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
+  const containerRef = useRef(null);
 
+  useEffect(() => {
+    document.title = "All your heroes united and at your command"
+  }, []);
 
   const loadMore = () => {
     setPage((prevPage) => prevPage + 1);
@@ -24,24 +29,35 @@ function FavoritesPage() {
   useEffect(() => {
     const handleScroll = () => {
       if (
-        window.innerHeight + document.documentElement.scrollTop >=
-        document.documentElement.offsetHeight
+        containerRef.current &&
+        containerRef.current.scrollTop + containerRef.current.clientHeight >=
+        containerRef.current.scrollHeight
       ) {
         loadMore();
       }
     };
   
-    window.addEventListener('scroll', handleScroll);
+    if (containerRef.current) {
+      containerRef.current.addEventListener('scroll', handleScroll);
+    }
+
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      if (containerRef.current) {
+        containerRef.current.removeEventListener('scroll', handleScroll);
+      }
     };
+
   }, []);
 
   return (
     <>
+    <section className="favorite-container">
+    <section className="favorite-content">
+        <h1>Favorites</h1>        
+      <div className="favorite-items" ref={containerRef} >
       {loading && <span className='loadingMsg'>Hang on we are loading the data</span>}
-      <section className="favorite_content">
-        {favoriteContext.length === 0 && <span className="favorite_nocontent">No Favourites are added. Search for some heroes and ad them to your favorites</span>}
+      
+        {favoriteContext.length === 0 && <span className="favorite_nocontent">No Favourites are added. <Link to="/search">Search for some heroes</Link> and ad them to your favorites</span>}
         {error && <span>Something went wrong when fetching the data. Please try again later!</span>} 
         {favoriteContext.slice(0, page * itemsPerPage).map((favourites) => (
           <Herocard 
@@ -54,19 +70,14 @@ function FavoritesPage() {
         
         {favoriteContext.length > page * itemsPerPage && (
           <Button onClick={loadMore} variant="primary">
-            Load More
+            Scroll to load more
           </Button>
-        )}       
+        )}
+        
+        </div>
+      </section>        
     </section>
-    <div>FavoritesPage</div>
-    <Button 
-    btnType="button"
-    goToPage="/profile"
-    isDisabled= { false }
-  >   
-    Profile
-  </Button>
-  </>
+       </>
   )
 }
 

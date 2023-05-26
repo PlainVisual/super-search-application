@@ -1,0 +1,48 @@
+.right-404 {
+  display: flex;
+  flex-direction: column;
+  gap:2rem;
+  padding-bottom: 8rem;
+}
+
+.right-404 h1 {
+  font-size: 8rem;
+  font-weight: var(  --ff-fontweight-bold);
+  color: #FFF;
+}
+
+.right-404 h3 {
+  width: 75%;
+  font-size: 2rem;
+  font-weight: var(  --ff-fontweight-bold);
+  color: #FFF;
+}
+
+.right-404 p {
+  width: 80%;
+  color: #FFF;
+}
+
+.notfound-btn {
+  display: flex;
+  gap:1rem;
+
+}
+
+.notfound-btn > button {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  color: #FFF;
+  background: var(--fav-gradient);
+  border: unset;
+  padding:0.5rem 2rem 0.5rem 2rem;
+  border-radius: 5px;
+  transform: translateY(0px);
+  transition: var(--animation-transition);  
+}
+
+.notfound-btn > button:is(:hover, :focus, :active, :focus, :target) {
+  transform: translateY(2px);
+  background: transparent linear-gradient(180deg, var(--tint-1-clr) 0%, var(--tint-2-clr) 54%, var(--tertiary-clr) 100%, var(--accent-clr) 100%) 0% 0% no-repeat padding-box;
+} 

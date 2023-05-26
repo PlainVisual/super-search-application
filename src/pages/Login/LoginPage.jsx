@@ -5,9 +5,12 @@ import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from "../../Context/AuthContext";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 import { checkServer } from "../../Helpers/checkServer";
+import { ReactComponent as Logo } from "../../assets/logo-super-search.svg";
+import watcher from "../../assets/images/theWatcher.jpg";
+import "../Login/login.css"
 
 function LoginPage() {
 
@@ -24,9 +27,15 @@ function LoginPage() {
                       });
 
   // Check if the server is running. see src/Helpers
-  checkServer();
+  useEffect(() => {
+    checkServer();
+  }, [])
 
-  async function LogInUser(data, e) {
+  useEffect(() => {
+    document.title = "Login to your account"
+  }, []);
+  
+   async function LogInUser(data, e) {
 
     e.preventDefault();
 
@@ -50,8 +59,8 @@ function LoginPage() {
       
 
     }catch(e) {
-      console.log(e.response.data.message);
-      console.error(e);
+      // console.log(e.response.data.message);
+      // console.error(e);
       if (!e?.response) {
         setErrorMsg("No server connection");
       } else if (e.response?.status === 401) {
@@ -67,17 +76,24 @@ function LoginPage() {
 
   return (
 
-    <>
-      <section className="left_column"></section>
-      <section className="right_column">
-        {errorMsg && <span className='error__msg'>{ errorMsg }</span>}
+      <section className="login-content">
+      <div className="left_column" style={{ "--background-signup": `url(${watcher})` }}>
+        <h1>Get Ready to Save the World with SuperSearch</h1>
+      </div>
+      <div className="right_column">
+      <div className="form-content">
+      <div className="login-logo">
+              <Logo />
+            </div>
+        
         <form onSubmit={handleSubmit(LogInUser)}>
+        {errorMsg && <span className='error__msg'>{ errorMsg }</span>}
           <InputField
             typeAttribute="text"
             nameAttribute="username"
             autoCompleteAttr="username"
             placeHolder="Username"
-            labelTextTop="Fill in your username"
+            // labelTextTop="Fill in your username"
             errors={ errors }
             register={ register }
             validationSchema={{
@@ -107,7 +123,7 @@ function LoginPage() {
             nameAttribute="password"
             autoCompleteAttr="new-password"
             placeHolder="Password"
-            labelTextTop="Fill in your Password"
+            // labelTextTop="Fill in your Password"
             errors={ errors }
             register={ register }
             validationSchema={{
@@ -135,22 +151,20 @@ function LoginPage() {
           />
          
          <Button 
+              classAtrribute="primary-btn-white"
               btnType="submit"
               isDisabled= { false }
          >   
               LogIn
              
          </Button>
-         
+         <p>Don't have a account? <Link to="/signup">Signup</Link> first to gain acces.</p>
         </form>
 
-        <p>Don't have a account? <Link to="/signup">Signup</Link> first to gain acces.</p>
-
-      </section>
-
-    </> 
-    
-
+        
+        </div>       
+      </div>
+    </section>        
 
 
   )

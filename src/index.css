@@ -1,5 +1,5 @@
 /* -- Fonts -- */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,500;0,700;0,900;1,100;1,200;1,300;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Open+Sans:ital,wght@0,300;0,400;0,700;0,800;1,300;1,400;1,700;1,800&display=swap');
 
 
 /* -- Global styles - Variables -- */
@@ -8,39 +8,72 @@
 
   /* -- FONT-FAMILY -- */
   
-  --ff-fontfamily: 'Poppins', sans-serif;
-  --ff-fontweight-thin: 100;
-  --ff-fontweight-exLight: 200;
+  --ff-fontfamily-OS: 'Open Sans', sans-serif;
+  --ff-fontfamily-AW: 'Audiowide', cursive;
+
   --ff-fontweight-light: 300;
-  --ff-fontweight-medium: 500;
+  --ff-fontweight-regular: 400;
   --ff-fontweight-bold: 700;
-  --ff-fontweight-black: 900;
+  --ff-fontweight-exBold: 800;
   
   /* -- FONT-SIZING -- */
   
-  --ff-fontsize-h1: clamp(1rem, 3vw + 1rem, 4rem);
-  --ff-fontsize-h2: 1.5rem;
-  --ff-fontsize-h3: 1.75rem;
-  --ff-fontsize-p: 1rem;
-  
+  --fz-h1-68px: clamp(1rem, 2vw + 1rem, 5rem);
+  --fz-h2-42px: 2.625rem;
+  --fz-h3-22px: 1.125rem;
+  --fz-h4-18px: 1.125rem;
+  --fz-h5-14px: 0.875rem;
+  --fz-p-16px: 1rem;
+   
   /* -- COLORS -- */
   
-  --primary-clr: hsl(22, 72%, 47%);
-  --secondary-clr: hsl(222 74% 43%);
-  --accent-clr:  hsl(22, 72%, 75%);
-  --font-clr: hsl(0, 0%, 5%);
+  --primary-clr: hsl(255, 86%, 14%);
+  --secondary-clr: hsl(193, 99%, 59%);
+  --tertiary-clr:  hsl(254, 68%, 60%);
+  --accent-clr: hsl(272, 85%, 63%);
+  --accent-tint-clr: hsl(254, 68%, 88%);
+  --tint-1-clr: hsl(272, 86%, 71%);
+  --tint-2-clr: hsl(263, 70%, 64%);
+  --tint-3-clr: hsl(254, 60%, 58%);
+  --tint-4-clr: hsl(228, 77%, 90%);
+  --font-clr: hsl(232, 19%, 23%);
+  
+  /* -- GRADIENTS -- */
+  --btn-gradient: transparent linear-gradient(90deg, var(--secondary-clr) 0%, var(--tertiary-clr) 100%) 0% 0% no-repeat padding-box;
+  --hero-gradient: transparent linear-gradient(0deg, var(--tertiary-clr) 0%, #3B2A7000 100%) 0% 0% no-repeat padding-box;
+  --hero-gradient-hover: transparent linear-gradient(1deg, var(--secondary-clr) 0%, #3B2A7000 100%) 0% 0% no-repeat padding-box;
+  --fav-filter-stat-gradient: transparent linear-gradient(180deg, var(--accent-clr) 0%, var(--tertiary-clr) 100%) 0% 0% no-repeat padding-box;
+  --herocard-gradient: transparent linear-gradient(90deg, var(--accent-clr) 0%, var(--tertiary-clr) 100%) 0% 0% no-repeat padding-box;
+  --searchicon-gradient: transparent linear-gradient(180deg, var(--tint-1-clr) 0%, var(--tint-2-clr) 54%, var(--accent-clr) 100%, var(--tertiary-clr) 100%) 0% 0% no-repeat padding-box;
+  --filter-box-active: transparent linear-gradient(180deg, var(--tint-1-clr) 0%, var(--primary-clr) 100%) 0% 0% no-repeat padding-box;
+  --fav-gradient: transparent linear-gradient(180deg, var(--tint-1-clr) 0%, var(--tint-2-clr) 54%, var(--accent-clr) 100%, var(--tertiary-clr) 100%) 0% 0% no-repeat padding-box;
+  --slider-hover-gradient: transparent linear-gradient(0deg, var(--tint-1-clr) 0%, var(--tint-3-clr) 100%) 0% 0% no-repeat padding-box;
   
   
   /* -- LAYOUT CONTROL WIDTH AND MARGIN-- */
   
   --outer-container-size: 100%;
-  --inner-container-size: 1200px;
-  --inner-container-margin: 1.25em;
-  --padding-section: 1.25em;
+  --inner-container-size: 100%;
+  --inner-width-size: 100%;
+  --inner-container-margin: 0em;
+  --padding-section: 0em;
   
   /* -- ANIMATION -- */
   scroll-behavior: smooth;
   --animation-transition:all 0.35s ease-in-out;
+
+  /* VARIABEL FOR CONTROL OF THE CORNERS BIG DIV */
+  --notchSize-left: 5.5rem;
+  --notchSize-right: 2.5rem;
+  
+  /* VARIABEL FOR CONTROL OF THE CORNERS MD DIV */
+  --notchSize-left-MD: 2rem;
+  --notchSize-right-MD: 1.5rem;
+
+    /* VARIABEL FOR CONTROL OF THE CORNERS SM DIV */
+    --notchSize-left-SM: 1rem;
+    --notchSize-right-SM: 0.75rem;
+
 
   }
   
@@ -58,21 +91,20 @@
   
   body {
   min-height: 100vh;
-  overflow-x: hidden;
-  font-family: var(--ff-fontfamily);
-  font-weight: var(--ff-fontweight-normal);
-  font-size: var(--ff-fontsize-p);
+  overflow: hidden;
+  font-family: var(--ff-fontfamily-OS);
+  font-weight: var(--ff-fontweight-regular);
+  font-size: var(--fz-p-16px);
   color: var(--font-clr);
   -webkit-font-smoothing: antialiased;
   /* background-color: hsl(48, 100%, 50%); */
-  padding: 0rem 4rem 4rem 4rem ;
   }
   
   p, h1, h2, h3, h4, h5, h6 {
-    overflow-wrap: break-word;
+    overflow-wrap: break-word;   
   }
   
-  input, button, textarea, select {
+  input, button, textarea, select { 
       font: inherit;
       
     }
@@ -89,27 +121,57 @@
   /* -- TYPOGRAPHY -- */
   
   h1 {
-    font-size: var(--ff-fontsize-h1);
-    font-weight: var(--ff-fontweight-bold);
+    font-family: var(--ff-fontfamily-AW);
+    font-size: var(--fz-h1-68px);
+    font-weight: var(--ff-fontweight-regular);
+    line-height: 3rem;
+    text-transform: uppercase;
+    color: var(--secondary-clr);
   }
   
   h2 {
-    font-size: var(--ff-fontsize-h2);
-    font-weight: var(--ff-fontweight-normal);
+    font-size: var(--fz-h2-42px);
+    font-weight: var(--ff-fontweight-bold);
   }
   
   h3 {
-    font-size: var(--ff-fontsize-h3);
-    font-weight: var(--ff-fontweight-normal);
+    font-size: var(--fz-h3-22px);
+    font-weight: var(--ff-fontweight-regular);
+    color: var(--tertiary-clr);
+  }
+
+  h4 {
+    font-size: var(--fz-h3-22px);
+    font-weight: var(--ff-fontweight-exBold);
+  }
+
+  h5 {
+    font-size: var(--fz-h4-18px);
+    font-weight: var(--ff-fontweight-regular);
+  }
+
+  h6 {
+    font-size: var(--fz-h5-14px);
+    font-weight: var(--ff-fontweight-light);
   }
   
   a {
     color: var(--accent-clr);
-    font-weight: var(--ff-fontweight-normal);
+    font-weight: var(--ff-fontweight-bold);
     transition: var(--animation-transition);
     outline: transparant;
     text-decoration: none;
     border-bottom: 2px solid transparent;
+  }
+
+  a:is(:hover, :active) {
+    color: var(--secondary-clr);
+  }
+
+  button {
+    text-transform: uppercase;
+    font-size: var(--fz-h5-14px);
+    font-weight: var(--ff-fontweight-bold);
   }
   
    

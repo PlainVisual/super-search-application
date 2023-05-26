@@ -1,15 +1,14 @@
 import React from "react";
 import "../../components/addfavourites/addfavourites.css"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeartCircleMinus } from "@fortawesome/free-solid-svg-icons";
-const favRemove = < FontAwesomeIcon icon={faHeartCircleMinus} />;
+import bookmarkDone from "../../assets/bookmark-done.svg";
+import bookmarkUndone from "../../assets/bookmark-undone.svg";
 
 function RemoveFavourites() {
 
   return(
 
     <>
-      <span className="cardfavourites"><i>{favRemove}</i></span>
+      <span className="cardfavourites slider-favorite-in"><img src={bookmarkUndone} alt="" /></span>
     </>
 
 

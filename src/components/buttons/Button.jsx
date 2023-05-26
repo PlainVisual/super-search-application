@@ -1,14 +1,16 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import "../../components/buttons/button.css"
 
-function Button({ btnType, isDisabled, children, goToPage }) {
+function Button({ classAtrribute, btnType, isDisabled, children, goToPage }) {
 
   const navigate = useNavigate();
 
   return (
 
     <>
-      <button 
+      <button
+        className={ classAtrribute } 
         type= { btnType }
         disabled= { isDisabled }
         onClick= {() => { navigate(goToPage)}}

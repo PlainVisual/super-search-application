@@ -1,10 +1,7 @@
 import React from "react";
 import "../../components/addfavourites/addfavourites.css"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import { faHeartBroken } from "@fortawesome/free-solid-svg-icons";
-const favorite = < FontAwesomeIcon icon={faHeart} />;
-const noFavorite = < FontAwesomeIcon icon={faHeartBroken} />;
+import bookmarkDone from "../../assets/bookmark-done.svg";
+import bookmarkUndone from "../../assets/bookmark-undone.svg";
 
 function AddFavourites({ favDisabled }) {
 
@@ -12,7 +9,7 @@ function AddFavourites({ favDisabled }) {
 
     <>
        
-      <span className="cardfavourites">{favDisabled ? <i>{noFavorite}</i> : <i>{favorite}</i>} </span>
+      <span className="cardfavourites slider-favorite-in">{favDisabled ? <img src={bookmarkUndone} alt="" /> : <img src={bookmarkDone} alt="" />} </span>
 
     </>
 
