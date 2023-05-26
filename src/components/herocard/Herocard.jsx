@@ -30,12 +30,15 @@ function Herocard({ heroes,
         </div>
 
         <div
-          className="hero__card-container"
+          className={`hero__card-container ${disabled ? "card__disabled" : ""}`}
           style={{ "--backgroundImg": `url(${heroes.images.md})` }}
           onClick={() => setIsOpen(true)}
         >
           <div className="hero__name">
             <h3>{heroes.name}</h3>
+          <div className="powerstat-element">
+            <img src="./src/assets/powerstats.svg" alt="" />
+          </div>  
           </div>
         </div>
       </article>

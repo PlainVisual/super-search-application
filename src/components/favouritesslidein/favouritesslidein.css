@@ -3,18 +3,22 @@
   position: fixed;
   height: 70vh;
   z-index: 999;
-  width: 28rem;
-  top: 25px;
+  width: 18rem;
+  top: 20px;
   right: 4rem;
-  background-color: rgb(21, 136, 236);
-  padding: 3rem;
-  border-radius: 0.25rem;
+  background: var(--fav-gradient);
+  padding: 6.5rem 2rem 3rem 2rem;
+
+  clip-path: polygon(var(--notchSize-left-MD) 0, 0 var(--notchSize-left-MD), 0 100%, calc(100% - var(--notchSize-right-MD)) 100%, 100% calc(100% - var(--notchSize-right)), 100% 0);
+
+  -webkit-clip-path: polygon(var(--notchSize-left-MD) 0, 0 var(--notchSize-left-MD), 0 100%, calc(100% - var(--notchSize-right-MD)) 100%, 100% calc(100% - var(--notchSize-right-MD)), 100% 0);
+  
   /* opacity: 0; */
 }
 
 .macro-slidein-fav.active {
   opacity: 1;
-  transform: translateX(0rem);
+  transform: translateX(0.75rem);
   transition: all 0.5s ease;
 }
 
@@ -25,8 +29,69 @@
 }
 
 .slide-container {
-  padding: 0rem;
+  position: relative;
+  padding: 1rem 1rem 0rem 0rem;
   height: 100%;
   overflow-y: scroll;
 }
+
+.macro-slidein-fav h1 {
+  position: absolute;
+  top:20px;
+  font-size: 1.3rem;
+  color: var(--primary-clr);
+  text-transform: capitalize;
+  margin-bottom: 2.5rem;
+}
+
+.macro-slidein-fav .favorite_nocontent {
+  color: #FFF;
+}
+
+.macro-slidein-fav .favorite_nocontent a:hover  {
+  transition: var(--animation-transition);
+  color: var(--primary-clr)
+}
+
+.macro-slidein-fav .favorite_nocontent a {
+  color: #FFF;
+}
+
+.fav-btn-close {
+  z-index: 2;
+  position: absolute;
+  top:0px;
+  right: 0px;
+  width: 80px;
+  height: 90px;
+  border: unset;
+  color: #FFF;
+  background-color: var(--primary-clr);
+
+  clip-path: polygon(0% 0%, 0 50%, 100% 100%, 100% 100%, 100% 0, 0% 0);
+  -Webkit-clip-path: polygon(0% 0%, 0 50%, 100% 100%, 100% 100%, 100% 0, 0% 0);
+}
+
+.fav-btn-close .fa-xmark {
+  position: absolute;
+  top:20px;
+  right:35px;
+  scale: 2;
+}
+
+.slide-container::-webkit-scrollbar {
+  width: 4px;
+ }
+
+ .slide-container::-webkit-scrollbar-track {
+  width: 10px;
+  background : #555999;
+  border-radius: 10px;
+ }
+
+ .slide-container::-webkit-scrollbar-thumb {
+   background: var(--primary-clr);
+   border-radius: 10px;
+   box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+ } 
 

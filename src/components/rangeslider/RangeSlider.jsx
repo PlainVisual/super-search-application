@@ -8,11 +8,13 @@ function RangeSlider({ statSetter, statName }) {
     <div className="range_slider">
       <div className="stat__number">{ statSetter }</div>
       <div className="stat__content">
-        <h4>{ statName }</h4>
+        <h3>{ statName }</h3>
         <div className="range__track" 
             style={{ '--width':`${ statSetter }%` }}>
+              
         </div>
-       </div>
+        <div className="stat__track"></div>
+      </div>
     </div>
 
   )

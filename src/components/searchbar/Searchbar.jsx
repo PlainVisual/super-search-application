@@ -25,9 +25,11 @@ function Searchbar({ searchValue, setSearchValue, heroesAll, setHeroesFilterd })
           <input type="search"
             value={ searchValue }
             onChange={(e) => { setSearchValue(e.target.value)}}
+            className="back-search-bar"
             id="search-bar" 
             name="search-bar" 
-            placeholder="Search for Hero or connection..."/>
+            placeholder="Search for Hero or connection..."
+            autoFocus="auto-focus"/>
       <i className="search-icon">{ search }</i>
      </div>
 

@@ -1,5 +1,6 @@
 import React from "react";
 import { AuthContext } from '../../Context/AuthContext';
+import { DataContext } from "../../Context/DataContext";
 import { useContext, useEffect, useState, useRef } from 'react';
 import { NavLink, Link } from "react-router-dom";
 import '../../components/header/header.css'
@@ -13,6 +14,9 @@ function Header() {
 
   const { profilePicture, 
           authState } = useContext(AuthContext);
+
+  const { favoriteContext,
+  } = useContext(DataContext);        
 
   const [profilePictureUrl, 
          setProfilePictureUrl] = useState("");
@@ -72,8 +76,10 @@ function Header() {
               <div className="header__account" ref={ menuRef }>
                 <MicroDropdown isOpen={ isOpen }/>
                 <div className="micro-trigger-user"  onClick={() => setIsOpen(!isOpen)}>
+                   <div className="outer-user">
                     <div className="profile__container">
                       <img className="hero__profile" src={profilePictureUrl} />
+                    </div>
                     </div>
                     <div className="user_profile">
                       <p>{authState.username}</p>
@@ -83,9 +89,14 @@ function Header() {
                 </div>
           </div>
           <div className="header__favorites" ref={ favRef }>
-            <FavouritesSlideIn favIsOpen={ favIsOpen } setFavIsOpen={ setFavIsOpen } />            
-              <div className="macro-trigger-fav" onClick={() => setFavIsOpen(!favIsOpen)}>              
-                  <FavoriteLogo />                  
+            <FavouritesSlideIn favIsOpen={ favIsOpen } setFavIsOpen={ setFavIsOpen } /> 
+            {favoriteContext.length > 0 && 
+                  <span className={`favorite_count ${favoriteContext.length >= 0 ? 'show-counter' : ''}`}>{favoriteContext.length}</span>}           
+              {/* <div className="macro-trigger-fav" onClick={() => setFavIsOpen(!favIsOpen)}> */}
+              <div className={`macro-trigger-fav ${favoriteContext.length > 0 ? 'show-border' : ''}`} onClick={() => setFavIsOpen(!favIsOpen)}>            
+                  <FavoriteLogo />
+                  
+                          
                 </div>
             </div>
           </div>

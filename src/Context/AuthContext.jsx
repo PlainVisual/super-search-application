@@ -4,6 +4,7 @@ import { createContext } from "react";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 import jwtTokenValid from "../Hooks/tokenExp";
+import logoSupersearch from "../assets/logo-super-search-diap.svg"
 
 export const AuthContext = createContext({});
 
@@ -20,8 +21,19 @@ function AuthContextProvider({ children }) {
   const [storedId, setStoredId] = useState(localStorage.getItem("USER_SELECT_ID") || "");
   const [storedImg, setStoredImg] = useState(localStorage.getItem("USER_SELECT_IMG") || "");
   const [storedDate, setStoredDate] = useState(localStorage.getItem("dateEnt") || "")
+  const [showLoading, setShowLoading] = useState(false);
   const navigate = useNavigate();
   const location = useLocation(); 
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setShowLoading(true);
+    }, 3000);
+  
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [authState.status]);
   
    // We upload the profile picture to the backend server en get the userdata back.  
   
@@ -130,9 +142,9 @@ function AuthContextProvider({ children }) {
     localStorage.setItem("USER_SELECT_IMG", storedImg)
     }, [storedId, storedImg]);
 
-  useEffect(() => {
-    console.log('isAuth changed:', authState.isAuth);
-  }, [authState.isAuth]);
+  // useEffect(() => {
+  //   console.log('isAuth changed:', authState.isAuth);
+  // }, [authState.isAuth]);
 
   useEffect(() => {
     
@@ -191,7 +203,17 @@ function AuthContextProvider({ children }) {
   return (
 
     <AuthContext.Provider value={ authentication }>
-      { authState.status === 'done' ? children : <p>loading....</p> }
+      { authState.status === 'done' ? ( children ) : ( <> {showLoading ? (
+            <div className="content">
+              <img src={logoSupersearch} alt="" />
+              <h3>POWER UP</h3>
+              <div className="loading"> 
+                <p>loading</p>
+                <span></span>
+              </div>
+            </div>
+          ) : null}
+        </> )}
     </AuthContext.Provider>
 
   )

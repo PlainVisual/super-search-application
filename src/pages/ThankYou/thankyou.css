@@ -1,0 +1,42 @@
+.thank-you-content {
+  display: flex;
+  align-items: flex-end;
+  height: 100%;
+  background-image: var(--background-thank);
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* background-position: 0px -80px; */
+}
+
+.left-thank {
+  align-items: flex-start;
+  padding: 4rem 0rem 0rem 6.25rem;
+ }
+
+.left-thank svg {
+ max-width: 250px;
+}
+
+.right-thank {
+  display: flex;
+  flex-wrap: wrap;
+  gap:1rem;
+  padding-bottom: 8rem;
+}
+
+.right-thank h1 {
+  font-size: 3.5rem;
+  font-weight: var(  --ff-fontweight-bold);
+  color: #FFF;
+}
+
+.right-thank h3 {
+  font-size: 1.5rem;
+  font-weight: var(  --ff-fontweight-bold);
+  color: #FFF;
+}
+
+.right-thank p {
+  width: 80%;
+  color: #FFF;
+}

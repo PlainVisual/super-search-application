@@ -1,0 +1,57 @@
+
+.splash-content {
+  display: flex;
+  min-height: 100%;
+  padding: 4rem 6.25rem 4rem 10rem;
+}
+
+.splash-info {
+  flex-basis: 50%;
+
+  display: flex;
+  flex-wrap: wrap;
+  color: #FFF;
+}
+
+.intro-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.intro-text p {
+padding-right: 5rem;
+}
+
+.splash-bold {
+  font-weight: var(--ff-fontweight-bold);
+}
+
+.splash-img-container {
+  flex-basis: 50%;
+  flex-shrink: 1;
+
+  display: flex;
+  align-items: center;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 2rem;
+}
+
+
+
+.splash-info svg {
+  overflow: visible;
+  width: 180px;
+  height: auto;
+  margin-bottom: 2rem;
+}
+
+.wrapper-splashscreen {
+  clip-path: polygon(var(--notchSize-left) 0, 0 var(--notchSize-left), 0 100%, calc(100% - var(--notchSize-right)) 100%, 100% calc(100% - var(--notchSize-right)), 100% 0);
+  
+  -webkit-clip-path: polygon(var(--notchSize-left) 0, 0 var(--notchSize-left), 0 100%, calc(100% - var(--notchSize-right)) 100%, 100% calc(100% - var(--notchSize-right)), 100% 0);
+}
+

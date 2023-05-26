@@ -1,15 +1,21 @@
 .slidecontainer p {
-  text-transform: capitalize;
+	font-family: var(--ff-fontfamily-AW);
+	color: var(--secondary-clr);
+  text-transform: uppercase;
+	font-size: 0.75rem;
 }
 
 input[type='range'] {
 	-webkit-appearance: none;
-  width: 100%;
+	padding: 0px;
+	border-radius: unset;
+	outline: unset;
+  width: 80%;
 	height: 10px;
-	background: grey;
-	background-image: linear-gradient(#99c9f5, #249be0);
+	border-radius: 4px;
+	background: var( --fav-gradient);
 	background-repeat: no-repeat;
-  opacity: 0.7;
+  opacity: 1;
   -webkit-transition: .2s;
   transition: opacity .2s;
 }
@@ -20,12 +26,12 @@ input[type='range']:hover {
 
 input[type='range']::-webkit-slider-thumb {
 	-webkit-appearance: none;
-	height: 16px;
-	width: 16px;
+	height: 20px;
+	width: 20px;
 	border-radius: 50%;
-	background: #021733;
+	background: var( --tint-2-clr);
 	cursor: pointer;
-	box-shadow: 0 0 2px 0 #555;
+	box-shadow: 0 0 3px 0 #555;
 }
 
 input[type='range']::-moz-range-thumb {
@@ -33,7 +39,7 @@ input[type='range']::-moz-range-thumb {
 	height: 20px;
 	width: 20px;
 	border-radius: 50%;
-	background: #021733;
+	background: var( --tint-1-clr);
 	cursor: pointer;
 	box-shadow: 0 0 2px 0 #555;
 }
@@ -46,17 +52,17 @@ input[type='range']::-webkit-slider-runnable-track {
 }
 
 input[type="range"]::-webkit-slider-thumb:hover {
-  box-shadow: #3a7de250 0px 0px 0px 8px;
+  box-shadow: hsla(254, 68%, 90%, 0.35) 0px 0px 0px 8px;
 }
 
 input[type="range"]::-webkit-slider-thumb:active {
-  box-shadow: #185aaf50 0px 0px 0px 11px;
+  box-shadow: hsla(254, 68%, 90%, 0.35) 0px 0px 0px 11px;
   transition: box-shadow 350ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, left 350ms cubic-
   bezier(0.4, 0, 0.2, 1) 0ms, bottom 350ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 }
 
 input[type="range"]::-webkit-slider-thumb:focus {
-  box-shadow: #185aaf50 0px 0px 0px 11px;
+  box-shadow: hsla(254, 68%, 90%, 0.35) 0px 0px 0px 11px;
   transition: box-shadow 350ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, left 350ms cubic-
   bezier(0.4, 0, 0.2, 1) 0ms, bottom 350ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 }

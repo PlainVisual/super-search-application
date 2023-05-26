@@ -2,7 +2,7 @@
   position: absolute;
   z-index: 3;
   width: 250px;
-  top: 75px;
+  top: 80px;
   background-color: aliceblue;
   padding: 1rem;
   border-radius: 0.25rem;
@@ -11,19 +11,45 @@
 
 .micro-drop-down.active {
   opacity: 1;
-  transform: translateY(20px);
+  transform: translateY(0px);
   transition: all 0.5s ease;
 }
 
 .micro-drop-down.inactive {
   opacity: 0;
-  transform: translateY(0px);
+  transform: translateY(-20px);
   transition: all 0.5s ease;
 }
 
 .micro-items {
   display: flex;
+  width: 100%;
   flex-direction: column;
   align-items: flex-start;
   gap: 0.25rem;
+}
+
+.micro-items h4 {
+  font-size: 0.95rem;
+  color: var(--primary-clr);
+}
+
+.micro-items a {
+  font-size: 0.8rem;
+}
+
+.micro-items hr {
+  width: 100%;
+}
+
+.logout-btn {
+  align-self: flex-end;
+  border:unset;
+  text-transform: lowercase;
+  text-decoration: underline;
+  background-color: unset;
+}
+
+.logout-btn:is(:hover, :active, :focus) {
+  color: var(--teriary-clr)
 }

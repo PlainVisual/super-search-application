@@ -18,9 +18,9 @@ function DataContextProvider({ children }) {
     localStorage.setItem('favouriteDisabled', JSON.stringify(favouriteDisabeld));
   }, [favouriteDisabeld]);
 
-  useEffect(() => {
-    console.log("favoriteContext updated:", favoriteContext);
-  }, [favoriteContext]);
+  // useEffect(() => {
+  //   console.log("favoriteContext updated:", favoriteContext);
+  // }, [favoriteContext]);
 
   useEffect(() => {
     heroData()    
@@ -45,7 +45,7 @@ function DataContextProvider({ children }) {
             
       
     } catch(e) {
-      console.error(e);
+      // console.error(e);
       toggleError(true);
       toggleLoading(false);
      

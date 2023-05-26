@@ -1,0 +1,19 @@
+
+.login-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.login-logo {
+  scale: 0.8;
+}
+
+button {
+  align-self: flex-start;
+}
+
+.form-content p {
+  font-size: var(--fz-h5-14px);
+}

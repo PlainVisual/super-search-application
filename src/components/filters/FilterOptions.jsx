@@ -1,7 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
 
-
 function FilterOptions({ heroesAll, setHeroesFilterd, activeFilter, setActiveFilter }) {
 
   useEffect(() => {
@@ -54,18 +53,18 @@ function FilterOptions({ heroesAll, setHeroesFilterd, activeFilter, setActiveFil
 
   return (
 
-    <div className="filter_container">
-      <button onClick={() => setActiveFilter("")}>All</button>
-      <button onClick={() => setActiveFilter("Male")}>Male</button>
-      <button onClick={() => setActiveFilter("Female")}>female</button>
-      <button onClick={() => setActiveFilter("good")}>heroes</button>
-      <button onClick={() => setActiveFilter("bad")}>vilain</button>
-      <button onClick={() => setActiveFilter("X")}>x-men</button>
-      <button onClick={() => setActiveFilter("Avengers")}>avengers</button>
-      <button onClick={() => setActiveFilter("Justice")}>justice league</button>
-      <button onClick={() => setActiveFilter("Marvel")}>Marvel</button>
-      <button onClick={() => setActiveFilter("DC")}>DC</button>
-    </div>
+    <>
+      <button className="filter-btn" onClick={() => setActiveFilter("")}>All</button>
+      <button className="filter-btn" onClick={() => setActiveFilter("Male")}>Male</button>
+      <button className="filter-btn" onClick={() => setActiveFilter("Female")}>female</button>
+      <button className="filter-btn" onClick={() => setActiveFilter("good")}>heroes</button>
+      <button className="filter-btn" onClick={() => setActiveFilter("bad")}>vilain</button>
+      <button className="filter-btn" onClick={() => setActiveFilter("X")}>x-men</button>
+      <button className="filter-btn" onClick={() => setActiveFilter("Avengers")}>avengers</button>
+      <button className="filter-btn" onClick={() => setActiveFilter("Justice")}>justice league</button>
+      <button className="filter-btn" onClick={() => setActiveFilter("Marvel")}>Marvel</button>
+      <button className="filter-btn" onClick={() => setActiveFilter("DC")}>DC</button>
+    </>
 
   )
 

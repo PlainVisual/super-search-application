@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import "../formfields/inputField.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 const eye = < FontAwesomeIcon icon={faEye} />;
@@ -21,10 +20,15 @@ function InputField({
             required,
             validationSchema,
             icon,
-                       
+            autofocus,
+                                 
            } ) {
 
   const [passwordShown, setPasswordShown] = useState(false);
+ 
+  const togglePasswordVisibility = () => {
+    setPasswordShown(!passwordShown);
+  };
 
   return (
 
@@ -32,6 +36,8 @@ function InputField({
 
       <fieldset className={ fieldsetClass }>
         { labelTextTop && <label htmlFor={ nameAttribute }>{ labelTextTop }{ required && "*"}</label> }
+        <div className="input-container">
+        { icon && <i onClick={togglePasswordVisibility}>{passwordShown ? eye : eyeSlash}</i> } 
         { typeAttribute === "message" ? 
 
                 <textarea 
@@ -48,10 +54,11 @@ function InputField({
 
                     :
 
-                <input 
+                <input
                   type={passwordShown ? "text" : typeAttribute} 
                   id={ nameAttribute } 
                   name={ nameAttribute }
+                  autoFocus= { autofocus }
                   placeholder={ placeHolder}
                   autoComplete={ autoCompleteAttr }
                   { ...register(nameAttribute, validationSchema)}
@@ -60,8 +67,7 @@ function InputField({
 
          }
 
-         
-        { icon && <i onClick={()=>setPasswordShown(!passwordShown)}>{passwordShown ? eye : eyeSlash}</i> } 
+         </div>
 
         { errors && errors[nameAttribute]?.type === "required" && (
           <span role="alert" className="error">{ errors[nameAttribute]?.message}</span>

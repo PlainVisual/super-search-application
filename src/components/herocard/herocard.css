@@ -1,17 +1,44 @@
 .hero_card {
   position: relative;
+  z-index: 0;
   cursor: pointer;
-  height:40vh;
-  overflow: hidden;
-  border-radius: 1rem;  
+  width: 200px;
+  height:32vh;
+  /* overflow: hidden; */
+  
+  
+}
+
+.hero_card::before,
+.hero_card::after {
+  content: "";
+  position: absolute;
+  inset: -0.5rem;
+  z-index: -1;
+  background: transparent linear-gradient(180deg, var(--tint-1-clr) 0%, var(--primary-clr) 100%) 0% 0% no-repeat padding-box;
+
+  clip-path: polygon(var(--notchSize-left-MD) 0, 0 var(--notchSize-left-MD), 0 100%, calc(100% - var(--notchSize-right-MD)) 100%, 100% calc(100% - var(--notchSize-right)), 100% 0);
+
+  -webkit-clip-path: polygon(var(--notchSize-left-MD) 0, 0 var(--notchSize-left-MD), 0 100%, calc(100% - var(--notchSize-right-MD)) 100%, 100% calc(100% - var(--notchSize-right-MD)), 100% 0);
 }
 
 .hero__card-container {
+  border: solid 1px #FFF;
   height: 100%;
   background-image: var(--backgroundImg);
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center;
+  background-position: 0px -40px;
+  transition: 0.5s cubic-bezier(.64,0,.22,.71);
+
+  clip-path: polygon(var(--notchSize-left-MD) 0, 0 var(--notchSize-left-MD), 0 100%, calc(100% - var(--notchSize-right-MD)) 100%, 100% calc(100% - var(--notchSize-right)), 100% 0);
+
+  -webkit-clip-path: polygon(var(--notchSize-left-MD) 0, 0 var(--notchSize-left-MD), 0 100%, calc(100% - var(--notchSize-right-MD)) 100%, 100% calc(100% - var(--notchSize-right-MD)), 100% 0);
+  
+}
+
+.hero__card-container:hover {
+  background-position: 0px -30px;
 }
 
 .hero_card:hover .card__overlay {
@@ -25,21 +52,68 @@
   justify-content: center;
 
   position: absolute;
-  background: rgba(0, 0, 0, 0.8);
-  width: 25%;
+  background: transparent linear-gradient(180deg, #BA76F5 0%, #9363E3 54%, #A752F1 100%, #7152D4 100%) 0% 0% no-repeat padding-box;
+  width: 26%;
+  height: 22%;
   transition: 0.5s ease;
   opacity: 1;
-  right: 0;
-  top: 0;
+  right: -8px;
+  top: -8px;
   font-size: 2.5rem;
   padding: 1.25rem;
   text-align: center;
+
+  clip-path: polygon(0% 0%, 0 70%, 30% 100%, 100% 100%, 100% 0, 0% 0);
+  -Webkit-clip-path: polygon(0% 0%, 0 70%, 30% 100%, 100% 100%, 100% 0, 0% 0);
 }
 
-.card__disabled {
+.card__overlay .cardfavourites {
+  transition: var(  --animation-transition);
+  transform: translateY(0px) scale(1);
+}
+
+
+.card__overlay:hover .cardfavourites {
+  transform: translateY(2px) scale(.9);
+}
+
+.card__disabled .cardfavourites{
   opacity: 0.6;
 }
 
 
+ .hero__card-container.card__disabled {
+  opacity: 0.4;
+}
 
+.hero__name {
+  position: absolute;
+  overflow: hidden;
+  display: block;
+  padding-top: 1rem;
+  padding-left: 2.5rem;
+  padding-right: 0.5rem;
+  bottom: 0px;
+  right:0px;
+  background: var(--herocard-gradient);
+  width: 85%;
+  height: 100px;
+
+  font-family: var(--ff-fontfamily-AW);
+  text-transform: uppercase;
+
+  clip-path: polygon(15% 0%, 0% 30%, 0% 100%, 100% 100%, 100% 0, 0% 0);
+  -Webkit-clip-path: polygon(15% 0%, 0% 30%, 0% 100%, 100% 100%, 100% 0, 0% 0);
+}
+
+.hero__name h3 {
+  color: #FFF;
+  font-size: 1rem;
+  line-height: 1rem;
+}
+
+.powerstat-element {
+  position: absolute;
+  bottom: 0px;
+}
 
