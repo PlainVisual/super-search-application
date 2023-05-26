@@ -16,7 +16,7 @@ function MainLayout() {
       location.pathname !== "/profile" &&
       location.pathname !== "/signup-step-2" && 
       location.pathname !== "/update-profile-picture" && <Header /> }
-    <main className="main-container main-search">
+    <main className="main-container main-search main-profile">
       <Outlet />
     </main>
     </>

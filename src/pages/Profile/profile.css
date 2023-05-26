@@ -1,0 +1,42 @@
+#text {
+  color: red;
+}
+
+.hero-image-container {
+   height: 100vh;
+   display: flex;
+  
+}
+
+.hero-image-button {
+  flex-basis: 100%;
+  display: flex;
+  align-items: stretch;
+  
+
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.hero__img {
+  position: relative;
+  display: flex;
+  flex-basis: 100%;
+  justify-content: center;
+}
+
+.hero__img img {
+  position: absolute;
+  bottom: 0px;
+  max-width: 550px;
+}
+.hero__img img[data-id="149"] {
+  bottom: -80px;
+}
+
+.hero-image-button:hover {
+  opacity: 0.8;
+  background-color: hsl(202, 62%, 39%);
+
+}

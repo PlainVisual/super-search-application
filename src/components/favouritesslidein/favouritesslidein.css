@@ -1,0 +1,32 @@
+.macro-slidein-fav {
+  display: block;
+  position: fixed;
+  height: 70vh;
+  z-index: 999;
+  width: 28rem;
+  top: 25px;
+  right: 4rem;
+  background-color: rgb(21, 136, 236);
+  padding: 3rem;
+  border-radius: 0.25rem;
+  /* opacity: 0; */
+}
+
+.macro-slidein-fav.active {
+  opacity: 1;
+  transform: translateX(0rem);
+  transition: all 0.5s ease;
+}
+
+.macro-slidein-fav.inactive {
+  opacity: 1;
+  transform: translateX(35rem);
+  transition: all 0.5s ease;
+}
+
+.slide-container {
+  padding: 0rem;
+  height: 100%;
+  overflow-y: scroll;
+}
+

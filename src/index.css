@@ -57,12 +57,15 @@
   }
   
   body {
+  min-height: 100vh;
+  overflow-x: hidden;
   font-family: var(--ff-fontfamily);
   font-weight: var(--ff-fontweight-normal);
   font-size: var(--ff-fontsize-p);
   color: var(--font-clr);
   -webkit-font-smoothing: antialiased;
   /* background-color: hsl(48, 100%, 50%); */
+  padding: 0rem 4rem 4rem 4rem ;
   }
   
   p, h1, h2, h3, h4, h5, h6 {
@@ -73,6 +76,10 @@
       font: inherit;
       
     }
+
+  button {
+    cursor: pointer;
+  }
   
   img, picture, video, canvas, svg {
   display: block;

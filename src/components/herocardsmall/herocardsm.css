@@ -1,0 +1,46 @@
+.hero_card-small {
+  position: relative;
+  display: flex;
+  background-color: rgb(151, 224, 247);
+  cursor: pointer;
+  overflow: hidden;
+  margin-bottom: 20px;
+ }
+
+.hero__card-small-container {
+  position: relative;
+  max-width: 150px;
+  height: 100px;
+  background-image: var(--backgroundImg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.hero__content-sm {
+  height: 150px;
+}
+
+.hero_card-small:hover .card__overlay-small {
+  opacity: 1;
+}
+
+.card__overlay-small {
+  display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    position: absolute;
+    background: rgba(0, 0, 0, 0.8);
+    width: 100% transition 0.5s ease;
+    opacity: 1;
+    left: 0;
+    top: 0;
+    font-size: 2.5rem;
+    padding: 1.25rem;
+  
+}
+
+.card__disabled-small {
+  opacity: 0.6;
+}
