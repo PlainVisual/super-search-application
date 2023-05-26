@@ -194,3 +194,24 @@ dialog[modal-mode="popup"]::backdrop {
 }
 
 
+@media only screen and (max-width: 1024px)  {
+
+  
+dialog {
+  width: 90vw;
+}
+
+  @keyframes show{
+    from {
+        transform: translateY(-110%);
+        scale: 0;
+        width: 5vw;
+    }
+    to {
+        transform: translateY(0%);
+        scale: 1;
+        width: 90vw;
+    }
+  }
+
+}

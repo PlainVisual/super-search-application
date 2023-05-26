@@ -99,6 +99,7 @@ function SuperSearch() {
               />
             </div>
             <div className="searchslider">
+              <div className="range-left">
               <Searchslider
                 powerstatName="strength"
                 heroesAll={heroesAll}
@@ -114,7 +115,8 @@ function SuperSearch() {
                 sliderValue={sliderValue2}
                 setSliderValue={setSliderValue2}
               />
-
+              </div>
+              <div className="range-right">
               <Searchslider
                 powerstatName="durability"
                 heroesAll={heroesAll}
@@ -130,6 +132,7 @@ function SuperSearch() {
                 sliderValue={sliderValue4}
                 setSliderValue={setSliderValue4}
               />
+              </div>
               <button className="filter-btn" onClick={handleReset}>reset</button>
             </div>
           </section>

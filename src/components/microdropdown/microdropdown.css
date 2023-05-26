@@ -1,11 +1,15 @@
 .micro-drop-down {
   position: absolute;
   z-index: 3;
-  width: 250px;
-  top: 80px;
-  background-color: aliceblue;
+  width: 200px;
+  top: 76px;
+  background: var(--btn-gradient);
   padding: 1rem;
   border-radius: 0.25rem;
+
+  clip-path: polygon(var(--notchSize-left-SM) 0, 0 var(--notchSize-left-SM), 0 100%, calc(100% - var(--notchSize-right-SM)) 100%, 100% calc(100% - var(--notchSize-right)), 100% 0);
+
+  -webkit-clip-path: polygon(var(--notchSize-left-SM) 0, 0 var(--notchSize-left-SM), 0 100%, calc(100% - var(--notchSize-right-SM)) 100%, 100% calc(100% - var(--notchSize-right-SM)), 100% 0);
   /* opacity: 0; */
 }
 
@@ -31,11 +35,16 @@
 
 .micro-items h4 {
   font-size: 0.95rem;
-  color: var(--primary-clr);
+  color: #FFF;
 }
 
 .micro-items a {
+  color: #FFF;
   font-size: 0.8rem;
+}
+
+.micro-items a:is(:hover, :active, :focus) {
+  color: var(--primary-clr);
 }
 
 .micro-items hr {
@@ -43,13 +52,15 @@
 }
 
 .logout-btn {
+  color: #FFF;
   align-self: flex-end;
   border:unset;
   text-transform: lowercase;
   text-decoration: underline;
   background-color: unset;
+  transition: var(--animation-transition);
 }
 
 .logout-btn:is(:hover, :active, :focus) {
-  color: var(--teriary-clr)
+  color: var(--primary-clr);
 }
