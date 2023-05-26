@@ -1,0 +1,48 @@
+.range_slider {
+  display: flex;
+  height: 50px;
+  background-color: black;
+}
+
+.stat__content {
+  width: 100%;
+  padding: 0rem 1rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+}
+
+.stat__number {
+  flex-basis: 20%;
+  color: white;
+  padding: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;  
+  
+}
+
+.stat__content h4 {
+  color: white;
+  text-transform: capitalize;
+}
+
+.range__track {
+  height: 10px;
+  background-color: blue;
+  animation: widthAnimation 2s cubic-bezier(0.42, 0, 0.58, 1) forwards;
+
+}
+
+@keyframes widthAnimation {
+  from {
+    width: 0%;
+  }
+  to {
+    width: var(--width);
+  }
+}

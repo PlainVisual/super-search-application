@@ -70,7 +70,7 @@ function SignUp() {
 
   return (
 
-    <main>
+    <>
       <section className="left_column"></section>
       <section className="right_column">
         {errorMsg && <span className='error__msg'>{ errorMsg }</span>}
@@ -215,7 +215,7 @@ function SignUp() {
 
       </section>
 
-    </main>  
+    </>  
     
   )
 

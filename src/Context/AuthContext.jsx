@@ -15,14 +15,15 @@ function AuthContextProvider({ children }) {
                                           profilePicture: null,
                                           status: "pending",
                                         })
+
   const [token, setToken] = useState(localStorage.getItem("token")); 
   const [storedId, setStoredId] = useState(localStorage.getItem("USER_SELECT_ID") || "");
+  const [storedImg, setStoredImg] = useState(localStorage.getItem("USER_SELECT_IMG") || "");
   const [storedDate, setStoredDate] = useState(localStorage.getItem("dateEnt") || "")
-  const [profilePic, setProfilePic] = useState({});
   const navigate = useNavigate();
   const location = useLocation(); 
   
-  // We upload the profile picture to the backend server en get the userdata back.  
+   // We upload the profile picture to the backend server en get the userdata back.  
   
   async function getData(token, imageSrc) {
     setToken(token);
@@ -31,34 +32,34 @@ function AuthContextProvider({ children }) {
             base64Image: imageSrc,
     }
     try {
-      // Use Promise.all to make both requests concurrently
-      const [imageRes, userRes] = await Promise.all([
-        imageSrc &&
-        axios.post(
-            "https://frontend-educational-backend.herokuapp.com/api/user/image",
-            imageData,
-            {
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
-              },
-            }
-          ),
-        axios.get("https://frontend-educational-backend.herokuapp.com/api/user", 
-            {
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
-              },
-            }
-          ),
-      ]);
-
-      // console.log(imageRes);
+      if (imageSrc) {
+        const imageRes = await axios.post(
+          "https://frontend-educational-backend.herokuapp.com/api/user/image",
+          imageData,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        
+      }
+  
+      const userRes = await axios.get(
+        "https://frontend-educational-backend.herokuapp.com/api/user",
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       // Destructure the user data
       const { email, id, username, profilePicture } = userRes.data;
-      console.log(userRes.data);
+      // setProfilePic(profilePicture);
+      // console.log(userRes.data);
       // Update the authState
       setAuthState({
         ...authState,
@@ -70,7 +71,7 @@ function AuthContextProvider({ children }) {
         status: "done",
       });
 
-      setProfilePic(profilePicture);
+      
       // To prevent using the navigation on page refresh this if/else statement determins where it needs to run.
       if (location.pathname === "/") {
         return; // Don't run the function again if already on homepage
@@ -85,7 +86,7 @@ function AuthContextProvider({ children }) {
        // I made use of useState to store the current date + 30 days that the user can be logged in. Every time he logs in its get a check if the date is expired. After the 30 days he is logged out en the LocalStorage is empty.
       if(!storedDate) {
         const date = new Date().setDate(new Date().getDate() + 30);
-        console.log(new Date(date));
+        // console.log(new Date(date));
 
         localStorage.setItem("dateEnt", JSON.stringify({
             expDate: date,
@@ -95,10 +96,13 @@ function AuthContextProvider({ children }) {
 
       if (storedDate) {
         const res = (new Date()).getTime() > JSON.parse(storedDate).expDate;
-        console.log(new Date(res));
+        // console.log(new Date(res));
         if (res) {
           localStorage.removeItem("dateEnt");
-          localStorage.removeItem("USER_SELECT_ID")
+          localStorage.removeItem("USER_SELECT_ID");
+          localStorage.removeItem("USER_SELECT_IMG");
+          localStorage.removeItem('SS_FAVOURITES');
+          localStorage.removeItem('favouriteDisabled');
           setStoredDate("");
           logOut();
           
@@ -119,11 +123,12 @@ function AuthContextProvider({ children }) {
     } 
   }
 
-  // We store the ID form the Hero-picker in localstorage.
+  // We store the ID and IMG form the Hero-picker in localstorage.
   useEffect(() => {
-    console.log("stored ID is =>", storedId);
+    // console.log("stored ID is =>", storedId);
     localStorage.setItem("USER_SELECT_ID", storedId)
-    }, [storedId]);
+    localStorage.setItem("USER_SELECT_IMG", storedImg)
+    }, [storedId, storedImg]);
 
   useEffect(() => {
     console.log('isAuth changed:', authState.isAuth);
@@ -164,22 +169,23 @@ function AuthContextProvider({ children }) {
       user: null,  
     });
 
-    navigate("/", { replace: true });
+    navigate("/thank-you", { replace: true });
   }
-
 
   const authentication = {
     isAuth: authState.isAuth,
     email: authState.email,
     username: authState.username,
+    authState: authState,
+    updateAuthState: setAuthState,
     profilePicture: authState.profilePicture,
     logOutFunction: logOut,
     updateDataFunction: getData,
     token: token,
     storedId: storedId,
     setStoredId: setStoredId,
-    profilePic: profilePic,
-    setProfilePic: setProfilePic,
+    storedImg: storedImg,
+    setStoredImg: setStoredImg,        
    }
 
   return (
