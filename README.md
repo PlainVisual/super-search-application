@@ -9,7 +9,6 @@ This project is intended as a learning and development tool for HTML, CSS, JavaS
 The Supersearch app is a powerful tool for Marvel/DC fans, allowing them to easily find and explore their favorite characters. Whether it's discovering new versions of beloved heroes or obtaining in-depth information about specific characters, this app provides a user-friendly and comprehensive search experience
 
 ## Get Started
-You can clone the project via [Supersearch APP](https://github.com/PlainVisual/super-search-application).
 
 ![De splashscreen](src/assets/screenshot/Landings-page.jpg)
 
