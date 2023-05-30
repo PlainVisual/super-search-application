@@ -95,9 +95,9 @@ function AuthContextProvider({ children }) {
           }
         } 
 
-       // I made use of useState to store the current date + 30 days that the user can be logged in. Every time he logs in its get a check if the date is expired. After the 30 days he is logged out en the LocalStorage is empty.
+       // I made use of useState to store the current date + 14 days that the user can be logged in. Every time he logs in its get a check if the date is expired. After the 14 days he is logged out and the LocalStorage is deleted.
       if(!storedDate) {
-        const date = new Date().setDate(new Date().getDate() + 30);
+        const date = new Date().setDate(new Date().getDate() + 14);
         // console.log(new Date(date));
 
         localStorage.setItem("dateEnt", JSON.stringify({
