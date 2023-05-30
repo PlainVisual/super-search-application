@@ -2,7 +2,7 @@
 ## Introduction
 Welcome!
 
-                                                      ![Logo supersearch](src/assets/logo-super-search.svg)
+![Logo supersearch](src/assets/logo-super-search.svg)
 
 This project is intended as a learning and development tool for HTML, CSS, JavaScript, and the React framework.
 
