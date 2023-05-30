@@ -12,7 +12,7 @@ De Supersearch-app is een krachtige tool voor Marvel/DC-fans, waarmee ze gemakke
 ## Buildtool voor deze applicatie
 [Vitejs](https://vitejs.dev/guide/)
 
-## Gebruikte dependencies die automatisch worden gestart na 'npm run dev'
+## Gebruikte dependencies
 [Vite-plugin-svgr](https://www.npmjs.com/package/vite-plugin-svgr);
 [Fontawesome](https://dev.to/davidemaye/how-to-set-up-font-awesome-in-react-5a8d);
 [Axios](https://www.npmjs.com/package/axios);
