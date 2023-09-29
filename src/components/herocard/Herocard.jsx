@@ -1,4 +1,5 @@
 import React from "react";
+import powerStat from '../../assets/powerstats.svg';
 import "../herocard/herocard.css";
 import { useState } from "react";
 import Modal from "../modal/Modal";
@@ -37,7 +38,7 @@ function Herocard({ heroes,
           <div className="hero__name">
             <h3>{heroes.name}</h3>
           <div className="powerstat-element">
-            <img src="./src/assets/powerstats.svg" alt="" />
+            <img src={powerStat} alt="" />
           </div>  
           </div>
         </div>
