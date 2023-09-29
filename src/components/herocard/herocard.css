@@ -27,7 +27,7 @@
   height: 100%;
   background-image: var(--backgroundImg);
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 112%;
   background-position: 0px -40px;
   transition: 0.5s cubic-bezier(.64,0,.22,.71);
 
@@ -38,7 +38,8 @@
 }
 
 .hero__card-container:hover {
-  background-position: 0px -30px;
+  background-size: 115%;
+  background-position: 0px -25px;
 }
 
 .hero_card:hover .card__overlay {
